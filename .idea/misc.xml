@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rodem/AndroidStudioProjects/Tootorino/app/src/main/res/drawable/searchbar_border.xml" value="0.332" />
         <entry key="..\:/Users/rodem/AndroidStudioProjects/Tootorino/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rodem/AndroidStudioProjects/Tootorino/app/src/main/res/layout/activity_main_student.xml" value="0.25" />
       </map>
     </option>
   </component>
