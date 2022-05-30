@@ -7,4 +7,8 @@
     <string name="main_subtext">You can toggle this easily anytime.</string>
     <string name="tutor_btn_text">I am a tutor</string>
     <string name="student_btn_text">I am a student</string>
+    <string name="activity_tag">Activity</string>
+    <string name="scheduling_tag">Scheduling</string>
+    <string name="switch_tag_tutor">Tutor mode</string>
+    <string name="requests_tag">Requests</string>
 </resources>
