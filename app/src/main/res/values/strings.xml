@@ -3,4 +3,8 @@
     <string name="search_tag">Search</string>
     <string name="schedule_tag">Schedule</string>
     <string name="switch_tag_student">Student mode</string>
+    <string name="main_text">What are you interested in?</string>
+    <string name="main_subtext">You can toggle this easily anytime.</string>
+    <string name="tutor_btn_text">I am a tutor</string>
+    <string name="student_btn_text">I am a student</string>
 </resources>
