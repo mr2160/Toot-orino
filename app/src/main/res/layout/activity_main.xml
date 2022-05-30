@@ -21,24 +21,25 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.4"
+        />
 
     <TextView
-            app:layout_constraintTop_toBottomOf="@id/main_text"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:id="@+id/subtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:marginTop="20dp"
-            android:padding="5dp"
-            android:text="@string/main_subtext"
-            android:textSize="15sp" />
 
-    <Button
+        android:id="@+id/subtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:marginTop="20dp"
+        android:padding="5dp"
+        android:text="@string/main_subtext"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/main_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtext"
+        />
+
+    <Button
+
         android:id="@+id/tutor_mode_btn"
         android:layout_width="250sp"
         android:layout_height="50sp"
@@ -47,12 +48,12 @@
         android:backgroundTint="@color/tutor_main_blue"
         android:textAllCaps="false"
         android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtext"
         />
 
     <Button
-        app:layout_constraintTop_toBottomOf="@id/tutor_mode_btn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/student_mode_btn"
         android:layout_width="250sp"
         android:layout_height="50sp"
@@ -60,6 +61,9 @@
         android:backgroundTint="@color/student_main_blue"
         android:textAllCaps="false"
         android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/tutor_mode_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         />
 
 
