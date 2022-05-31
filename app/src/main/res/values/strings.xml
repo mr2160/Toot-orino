@@ -11,4 +11,7 @@
     <string name="scheduling_tag">Scheduling</string>
     <string name="switch_tag_tutor">Tutor mode</string>
     <string name="requests_tag">Requests</string>
+    <string name="mon_text">Mon</string>
+    <string name="day_text">Mon</string>
+    <string name="date_text">31</string>
 </resources>

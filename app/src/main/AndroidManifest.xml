@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tootorino">
         <activity
+            android:name=".Calendar_card"
+            android:exported="false" />
+        <activity
             android:name=".MainActivityStudent"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivityTutor"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
