@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "725049833153",
+    "project_id": "toot-oring",
+    "storage_bucket": "toot-oring.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725049833153:android:1d593b96ec153b9f95c640",
+        "android_client_info": {
+          "package_name": "uni_lj.fe.tunv.projekt.toot_orino"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "725049833153-84a65188c7hum3vtdt63g878sthrv2v1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uni_lj.fe.tunv.projekt.toot_orino",
+            "certificate_hash": "1b750236912d5e3ec78f3d672abc49b6d218f3b9"
+          }
+        },
+        {
+          "client_id": "725049833153-bq4mmab7aa4pq442j9tq8vek41u1e149.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCChOegOjE2R5rtZKlOEOkis4berXyl0tY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "725049833153-bq4mmab7aa4pq442j9tq8vek41u1e149.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
