@@ -4,42 +4,44 @@ import java.util.Date;
 
 public class Timeslot {
 
-    private User tutor;
-    private User student;
+    private String tutorID;
+    private String studentID;
 
     private Subject subject;
     private String details;
     private String desiredGrade;
 
-    private Date startSate;
-    private Date endSate;
+    private Date startDate;
+    private Date endDate;
     private String location;
 
-    public Timeslot(User tutor, User student, Subject subject, String details, String desiredGrade, Date startSate, Date endSate, String location) {
-        this.tutor = tutor;
-        this.student = student;
+    public Timeslot(String tutorID, String studentID, Subject subject, String details, String desiredGrade, Date startDate, Date endDate, String location) {
+        this.tutorID = tutorID;
+        this.studentID = studentID;
         this.subject = subject;
         this.details = details;
         this.desiredGrade = desiredGrade;
-        this.startSate = startSate;
-        this.endSate = endSate;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.location = location;
     }
 
-    public User getTutor() {
-        return tutor;
+    public Timeslot(){}
+
+    public String getTutorID() {
+        return tutorID;
     }
 
-    public void setTutor(User tutor) {
-        this.tutor = tutor;
+    public void setTutorID(String tutorID) {
+        this.tutorID = tutorID;
     }
 
-    public User getStudent() {
-        return student;
+    public String getStudentID() {
+        return studentID;
     }
 
-    public void setStudent(User student) {
-        this.student = student;
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
     }
 
     public Subject getSubject() {
@@ -66,20 +68,20 @@ public class Timeslot {
         this.desiredGrade = desiredGrade;
     }
 
-    public Date getStartSate() {
-        return startSate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStartSate(Date startSate) {
-        this.startSate = startSate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getEndSate() {
-        return endSate;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEndSate(Date endSate) {
-        this.endSate = endSate;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public String getLocation() {
