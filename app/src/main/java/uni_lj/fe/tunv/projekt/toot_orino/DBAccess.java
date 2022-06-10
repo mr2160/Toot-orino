@@ -28,10 +28,8 @@ public class DBAccess {
         DocumentReference studentRef = db. collection("Users").document(timeslot.getStudentID());
 
         Task<Void> tutorTask = tutorRef.update("tutorTimeslots", FieldValue.arrayUnion(timeslot));
-        Task<Void> studentTask = tutorRef.update("studentTimeslots", FieldValue.arrayUnion(timeslot));
+        Task<Void> studentTask = studentRef.update("studentTimeslots", FieldValue.arrayUnion(timeslot));
 
         return Tasks.whenAll(addTask, tutorTask, studentTask);
     }
-
-
 }

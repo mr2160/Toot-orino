@@ -27,15 +27,32 @@ public class MainActivityTutor extends AppCompatActivity {
             startActivity(new Intent(MainActivityTutor.this, MainActivityStudent.class));
         });
 
+        DBAccess dba = new DBAccess();
+
         //User testUser = new User("Jana Mokar", Arrays.asList(), "Gimnazija Bežigrad", 7.0f, "Lorem ipsum kerjfn jsnfkj askdjfnasi fjsjd skdjfnk jdjdj asdf.", Arrays.asList(), Arrays.asList());
 
-        /*DBAccess dba = new DBAccess();
-        dba.addSubjectToUser(new Subject("Java", 15), "yW8mv9udIL4Uzbfhb3pT").onSuccessTask(suc->{
+
+        /*dba.addSubjectToUser(new Subject("Java", 15), "yW8mv9udIL4Uzbfhb3pT").onSuccessTask(suc->{
             Log.i(null, suc.toString());
             return null;
         })*/
 
 
-        //Timeslot testTimeslot = new Timeslot("", "", new Subject("Java", 15), "Asynchronous functions", "8/10", ,);
+        /*Timeslot testTimeslot = new Timeslot("yW8mv9udIL4Uzbfhb3pT",
+                                            "gtilMNCYIyWbYV8gsJP8",
+                                            new Subject("Java", 15),
+                                            "Asynchronous functions",
+                                            "8/10",
+                                            java.sql.Timestamp.valueOf("2022-06-13 10:00:00.0"),
+                                            java.sql.Timestamp.valueOf("2022-06-13 10:00:00.0"),
+                                            "Zoom");
+
+        dba.newTimeslot(testTimeslot).onSuccessTask(suc -> {
+            Log.i(null,"POSLANO!");
+            return null;
+        }).onSuccessTask(err -> {
+            Log.e(null, "NI ŠLO!");
+            return null;
+        });*/
     }
 }
