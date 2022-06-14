@@ -1,6 +1,8 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +10,10 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.firestore.FirebaseFirestore;
+//import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.lang.reflect.Array;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -26,6 +29,17 @@ public class MainActivityTutor extends AppCompatActivity {
         switcher.setOnClickListener(v -> {
             startActivity(new Intent(MainActivityTutor.this, MainActivityStudent.class));
         });
+
+
+        Timestamp test = new Timestamp(2000, 5, 5, 20, 20, 0, 0);
+        Timeslot[] timeslots = new Timeslot[1];
+        timeslots[0] = new Timeslot("00", "10", new Subject("Matematika", 5), "test1Details", "4", test, test, "Janezova ulica 5");
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.timeslots_tutor_recycle_view);
+        TutorTimeslotAdapter TTadapter = new TutorTimeslotAdapter(timeslots);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(TTadapter);
+
 
         DBAccess dba = new DBAccess();
 
