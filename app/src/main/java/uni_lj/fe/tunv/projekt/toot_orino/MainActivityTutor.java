@@ -46,15 +46,6 @@ public class MainActivityTutor extends AppCompatActivity {
 
         DBAccess dba = new DBAccess();
 
-        dba.getUserById("yW8mv9udIL4Uzbfhb3pT").addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                User user = documentSnapshot.toObject(User.class);
-                Log.i(null, "---------- HERE -----------");
-                Log.i(null, user.toString());
-            }
-        });
-
 
         //----- ADD USER EXAMPLE --------
 
