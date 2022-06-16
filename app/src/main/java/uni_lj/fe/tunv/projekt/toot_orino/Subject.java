@@ -9,6 +9,8 @@ public class Subject {
         this.hourlyRate = hourlyRate;
     }
 
+    public Subject(){}
+
     public String getName() {
         return name;
     }

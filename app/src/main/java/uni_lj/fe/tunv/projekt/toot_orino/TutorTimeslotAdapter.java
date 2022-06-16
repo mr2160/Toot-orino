@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdapter.ViewHolder> {
@@ -28,7 +27,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.subjectView.setText(timeslots[position].getSubject().getName());
-        holder.timestampView.setText(timeslots[position].getStartTimeStamp().toString());
+        holder.timestampView.setText(timeslots[position].getStartDate().toString());
     }
     @Override
     public int getItemCount() {

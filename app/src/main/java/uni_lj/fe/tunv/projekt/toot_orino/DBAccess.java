@@ -3,6 +3,7 @@ package uni_lj.fe.tunv.projekt.toot_orino;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,7 +22,7 @@ public class DBAccess {
         return uref.update("subjects", FieldValue.arrayUnion(subject));
     }
 
-    public Task<Void> newTimeslot(Timeslot timeslot){
+    public Task<Void> addTimeslot(Timeslot timeslot){
         Task<DocumentReference> addTask = this.db.collection("Timeslots").add(timeslot);
 
         DocumentReference tutorRef = db. collection("Users").document(timeslot.getTutorID());
@@ -31,5 +32,10 @@ public class DBAccess {
         Task<Void> studentTask = studentRef.update("studentTimeslots", FieldValue.arrayUnion(timeslot));
 
         return Tasks.whenAll(addTask, tutorTask, studentTask);
+    }
+
+    public Task<DocumentSnapshot> getUserById(String userId){
+        DocumentReference userRef = db.collection("Users").document(userId);
+        return userRef.get();
     }
 }

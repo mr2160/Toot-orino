@@ -10,7 +10,10 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 import java.lang.reflect.Array;
 import java.sql.Timestamp;
@@ -43,6 +46,18 @@ public class MainActivityTutor extends AppCompatActivity {
 
         DBAccess dba = new DBAccess();
 
+        dba.getUserById("yW8mv9udIL4Uzbfhb3pT").addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                User user = documentSnapshot.toObject(User.class);
+                Log.i(null, "---------- HERE -----------");
+                Log.i(null, user.toString());
+            }
+        });
+
+
+        //----- ADD USER EXAMPLE --------
+
         //User testUser = new User("Jana Mokar", Arrays.asList(), "Gimnazija Bežigrad", 7.0f, "Lorem ipsum kerjfn jsnfkj askdjfnasi fjsjd skdjfnk jdjdj asdf.", Arrays.asList(), Arrays.asList());
 
 
@@ -57,11 +72,12 @@ public class MainActivityTutor extends AppCompatActivity {
                                             new Subject("Java", 15),
                                             "Asynchronous functions",
                                             "8/10",
-                                            java.sql.Timestamp.valueOf("2022-06-13 10:00:00.0"),
-                                            java.sql.Timestamp.valueOf("2022-06-13 10:00:00.0"),
+                                            new Date(java.sql.Timestamp.valueOf("2022-06-13 10:00:00.0").getTime()),
+                                            new Date(java.sql.Timestamp.valueOf("2022-06-13 10:00:00.0").getTime()),
                                             "Zoom");
 
-        dba.newTimeslot(testTimeslot).onSuccessTask(suc -> {
+        //----- ADD TIMESLOT EXAMPLE --------
+        dba.addTimeslot(testTimeslot).onSuccessTask(suc -> {
             Log.i(null,"POSLANO!");
             return null;
         }).onSuccessTask(err -> {

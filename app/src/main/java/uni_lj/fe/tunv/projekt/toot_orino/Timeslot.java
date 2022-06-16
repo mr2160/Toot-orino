@@ -1,6 +1,5 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class Timeslot {
@@ -12,20 +11,22 @@ public class Timeslot {
     private String details;
     private String desiredGrade;
 
-    private Timestamp startTimeStamp;
-    private Timestamp endTimeStamp;
+    private Date startDate;
+    private Date endDate;
     private String location;
 
-    public Timeslot(String tutorID, String studentID, Subject subject, String details, String desiredGrade, Timestamp startTimeStamp, Timestamp endTimeStamp, String location) {
+    public Timeslot(String tutorID, String studentID, Subject subject, String details, String desiredGrade, Date startDate, Date endDate, String location) {
         this.tutorID = tutorID;
         this.studentID = studentID;
         this.subject = subject;
         this.details = details;
         this.desiredGrade = desiredGrade;
-        this.startTimeStamp = startTimeStamp;
-        this.endTimeStamp = endTimeStamp;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.location = location;
     }
+
+    public Timeslot(){}
 
     public String getTutorID() {
         return tutorID;
@@ -67,20 +68,20 @@ public class Timeslot {
         this.desiredGrade = desiredGrade;
     }
 
-    public Timestamp getStartTimeStamp() {
-        return startTimeStamp;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStartTimeStamp(Timestamp startTimeStamp) {
-        this.startTimeStamp = startTimeStamp;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Timestamp getEndTimeStamp() {
-        return endTimeStamp;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEndTimeStamp(Timestamp endTimeStamp) {
-        this.endTimeStamp = endTimeStamp;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public String getLocation() {
