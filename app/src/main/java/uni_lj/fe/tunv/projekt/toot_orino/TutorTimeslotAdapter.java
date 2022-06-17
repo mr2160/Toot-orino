@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdapter.ViewHolder> {
-    private Timeslot[] timeslots;
+import java.util.List;
+import java.util.ArrayList;
 
-    public TutorTimeslotAdapter(Timeslot[] timeslots){
+public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdapter.ViewHolder> {
+    private ArrayList<Timeslot> timeslots;
+
+    public TutorTimeslotAdapter(ArrayList<Timeslot> timeslots){
         this.timeslots = timeslots;
     }
 
@@ -26,22 +29,28 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.subjectView.setText(timeslots[position].getSubject().getName());
-        holder.timestampView.setText(timeslots[position].getStartDate().toString());
+        holder.nameView.setText(timeslots.get(position).getTutorID());
+        holder.subjectView.setText(timeslots.get(position).getSubject().getName());
+        holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
+        holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + timeslots.get(position).getStartDate().getMinutes());
     }
     @Override
     public int getItemCount() {
-        return timeslots.length;
+        return timeslots.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView nameView;
         public TextView subjectView;
+        public TextView dateView;
         public TextView timestampView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            this.nameView = (TextView) itemView.findViewById(R.id.tutorname_text);
             this.subjectView = (TextView) itemView.findViewById(R.id.subject_text);
-            this.timestampView = (TextView) itemView.findViewById(R.id.timeslot_date);
+            this.dateView = (TextView) itemView.findViewById(R.id.date_text);
+            this.timestampView = (TextView) itemView.findViewById(R.id.timeslot_time_text);
         }
     }
 }

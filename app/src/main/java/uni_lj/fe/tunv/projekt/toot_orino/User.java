@@ -1,6 +1,8 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
 import java.util.List;
+import java.util.ArrayList;
+
 
 public class User {
 
@@ -12,14 +14,14 @@ public class User {
     private String bio;
 
 
-    private List<Timeslot> tutorTimeslots;
-    private List<Timeslot> studentTimeslots;
+    private ArrayList<Timeslot> tutorTimeslots;
+    private ArrayList<Timeslot> studentTimeslots;
 
     public User(){
 
     }
 
-    public User(String name, List<Subject> subjects, String currentEducation, float rating, String bio, List<Timeslot> tutorTimeslots, List<Timeslot> studentTimeslots) {
+    public User(String name, List<Subject> subjects, String currentEducation, float rating, String bio, ArrayList<Timeslot> tutorTimeslots, ArrayList<Timeslot> studentTimeslots) {
         this.name = name;
         this.subjects = subjects;
         this.currentEducation = currentEducation;
@@ -73,7 +75,7 @@ public class User {
         return tutorTimeslots;
     }
 
-    public void setTutorTimeslots(List<Timeslot> tutorTimeslots) {
+    public void setTutorTimeslots(ArrayList<Timeslot> tutorTimeslots) {
         this.tutorTimeslots = tutorTimeslots;
     }
 
@@ -81,7 +83,7 @@ public class User {
         return studentTimeslots;
     }
 
-    public void setStudentTimeslots(List<Timeslot> studentTimeslots) {
+    public void setStudentTimeslots(ArrayList<Timeslot> studentTimeslots) {
         this.studentTimeslots = studentTimeslots;
     }
 }

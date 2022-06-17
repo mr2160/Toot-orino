@@ -20,6 +20,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.ArrayList;
 
 public class MainActivityTutor extends AppCompatActivity {
 
@@ -34,13 +35,17 @@ public class MainActivityTutor extends AppCompatActivity {
         });
 
 
-        Timestamp test = new Timestamp(2000, 5, 5, 20, 20, 0, 0);
-        Timeslot[] timeslots = new Timeslot[1];
-        timeslots[0] = new Timeslot("00", "10", new Subject("Matematika", 5), "test1Details", "4", test, test, "Janezova ulica 5");
+        Timestamp test = new Timestamp(2000, 5, 6, 20, 20, 0, 0);
+        ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
+        Timeslot timeslot1 = new Timeslot("00", "10", new Subject("Matematika", 5), "test1Details", "4", test, test, "Janezova ulica 5");
+        Timeslot timeslot2 = new Timeslot("00", "10", new Subject("Biologija", 6), "test1Details", "4", test, test, "Janezova ulica 5");
+        timeslots.add(timeslot1);
+        timeslots.add(timeslot2);
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.timeslots_tutor_recycle_view);
         TutorTimeslotAdapter TTadapter = new TutorTimeslotAdapter(timeslots);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(TTadapter);
 
 
