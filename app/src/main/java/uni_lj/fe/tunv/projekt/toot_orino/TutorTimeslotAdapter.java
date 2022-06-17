@@ -1,6 +1,7 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -13,10 +14,13 @@ import java.util.ArrayList;
 
 public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdapter.ViewHolder> {
     private ArrayList<Timeslot> timeslots;
+    private static RecyclerClickListener listener;
 
-    public TutorTimeslotAdapter(ArrayList<Timeslot> timeslots){
+    public TutorTimeslotAdapter(ArrayList<Timeslot> timeslots, RecyclerClickListener listener){
         this.timeslots = timeslots;
+        this.listener = listener;
     }
+
 
     @NonNull
     @Override
@@ -33,17 +37,20 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
         holder.subjectView.setText(timeslots.get(position).getSubject().getName());
         holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
         holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + timeslots.get(position).getStartDate().getMinutes());
+
     }
     @Override
     public int getItemCount() {
         return timeslots.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView nameView;
         public TextView subjectView;
         public TextView dateView;
         public TextView timestampView;
+        public TextView locationView;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -51,6 +58,17 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
             this.subjectView = (TextView) itemView.findViewById(R.id.subject_text);
             this.dateView = (TextView) itemView.findViewById(R.id.date_text);
             this.timestampView = (TextView) itemView.findViewById(R.id.timeslot_time_text);
+            this.locationView = (TextView) itemView.findViewById(R.id.location_text);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view, getAdapterPosition());
+        }
+    }
+
+    public interface RecyclerClickListener{
+        void onClick(View view, int position);
     }
 }

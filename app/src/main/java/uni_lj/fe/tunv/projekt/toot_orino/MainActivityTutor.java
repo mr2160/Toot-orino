@@ -1,12 +1,14 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -22,7 +26,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.ArrayList;
 
-public class MainActivityTutor extends AppCompatActivity {
+public class MainActivityTutor extends AppCompatActivity{
+    private TutorTimeslotAdapter.RecyclerClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,24 +38,9 @@ public class MainActivityTutor extends AppCompatActivity {
         switcher.setOnClickListener(v -> {
             startActivity(new Intent(MainActivityTutor.this, MainActivityStudent.class));
         });
-
-
-        Timestamp test = new Timestamp(2000, 5, 6, 20, 20, 0, 0);
-        ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
-        Timeslot timeslot1 = new Timeslot("00", "10", new Subject("Matematika", 5), "test1Details", "4", test, test, "Janezova ulica 5");
-        Timeslot timeslot2 = new Timeslot("00", "10", new Subject("Biologija", 6), "test1Details", "4", test, test, "Janezova ulica 5");
-        timeslots.add(timeslot1);
-        timeslots.add(timeslot2);
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.timeslots_tutor_recycle_view);
-        TutorTimeslotAdapter TTadapter = new TutorTimeslotAdapter(timeslots);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(TTadapter);
-
-
         DBAccess dba = new DBAccess();
 
+        setAdapter();
 
         //----- ADD USER EXAMPLE --------
 
@@ -80,5 +70,35 @@ public class MainActivityTutor extends AppCompatActivity {
             Log.e(null, "NI ŠLO!");
             return null;
         });*/
+    }
+
+    private void setAdapter() {
+        setOnClickListener();
+        Timestamp test = new Timestamp(2000, 5, 6, 20, 20, 0, 0);
+        ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
+        Timeslot timeslot1 = new Timeslot("00", "10", new Subject("Matematika", 5), "test1Details", "4", test, test, "Janezova ulica 5");
+        Timeslot timeslot2 = new Timeslot("00", "10", new Subject("Biologija", 6), "test1Details", "4", test, test, "Janezova ulica 5");
+        timeslots.add(timeslot1);
+        timeslots.add(timeslot2);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.timeslots_tutor_recycle_view);
+        TutorTimeslotAdapter TTadapter = new TutorTimeslotAdapter(timeslots, listener);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(TTadapter);
+    }
+//For expanding box with aditional info
+    private void setOnClickListener() {
+        listener = new TutorTimeslotAdapter.RecyclerClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                TextView locationView = view.findViewById(R.id.location_text);
+                if(locationView.getVisibility() == View.GONE) {
+                    locationView.setVisibility(View.VISIBLE);
+                }else{
+                    locationView.setVisibility(View.GONE);
+                }
+            }
+        };
     }
 }
