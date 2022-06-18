@@ -38,6 +38,12 @@ public class MainActivityTutor extends AppCompatActivity{
         switcher.setOnClickListener(v -> {
             startActivity(new Intent(MainActivityTutor.this, MainActivityStudent.class));
         });
+
+        TextView menuSwitcher = findViewById(R.id.scheduling_tag_tutor);
+        menuSwitcher.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivityTutor.this, SchedulingActivityTutor.class));
+        });
+
         DBAccess dba = new DBAccess();
 
         setAdapter();

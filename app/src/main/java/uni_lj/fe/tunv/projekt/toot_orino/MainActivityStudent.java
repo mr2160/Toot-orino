@@ -15,7 +15,6 @@ import java.util.HashMap;
 
 public class MainActivityStudent extends AppCompatActivity{
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +30,11 @@ public class MainActivityStudent extends AppCompatActivity{
         TextView switcher = findViewById(R.id.switch_tag_student);
         switcher.setOnClickListener(v -> {
             startActivity(new Intent(MainActivityStudent.this, MainActivityTutor.class));
+        });
+
+        TextView menuSwitcher = findViewById(R.id.schedule_tag_student);
+        menuSwitcher.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivityStudent.this, ScheduleActivityStudent.class));
         });
     }
 }

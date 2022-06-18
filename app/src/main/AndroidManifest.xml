@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tootorino">
         <activity
+            android:name=".SchedulingActivityTutor"
+            android:exported="false" />
+        <activity
+            android:name=".ScheduleActivityStudent"
+            android:exported="false" />
+        <activity
             android:name=".Calendar_card"
             android:exported="false" />
         <activity
