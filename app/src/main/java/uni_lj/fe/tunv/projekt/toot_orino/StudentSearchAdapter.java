@@ -62,6 +62,12 @@ public class StudentSearchAdapter extends RecyclerView.Adapter<StudentSearchAdap
             this.timestampView = (TextView) itemView.findViewById(R.id.timeslot_time_text);
             this.locationView = (TextView) itemView.findViewById(R.id.location_text);
             itemView.setOnClickListener(this);
+            itemView.findViewById(R.id.request_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    locationView.setVisibility(View.GONE); //TODO: Code for request to database
+                }
+            });
         }
 
         @Override

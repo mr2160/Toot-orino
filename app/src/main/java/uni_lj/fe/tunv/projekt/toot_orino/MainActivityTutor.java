@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -99,10 +100,16 @@ public class MainActivityTutor extends AppCompatActivity{
             @Override
             public void onClick(View view, int position) {
                 TextView locationView = view.findViewById(R.id.location_text);
+                Button confirmBtn = view.findViewById(R.id.confirm_button);
+                Button rejectBtn = view.findViewById(R.id.reject_button);
                 if(locationView.getVisibility() == View.GONE) {
                     locationView.setVisibility(View.VISIBLE);
+                    confirmBtn.setVisibility(View.VISIBLE);
+                    rejectBtn.setVisibility(View.VISIBLE);
                 }else{
                     locationView.setVisibility(View.GONE);
+                    confirmBtn.setVisibility(View.GONE);
+                    rejectBtn.setVisibility(View.GONE);
                 }
             }
         };

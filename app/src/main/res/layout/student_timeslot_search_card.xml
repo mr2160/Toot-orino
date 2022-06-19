@@ -77,4 +77,19 @@
         android:textSize="15sp"
         android:textStyle="bold"
         android:visibility="gone" />
+
+    <Button
+        android:id="@+id/request_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/request_timeslot"
+        android:backgroundTint="@color/tutor_main_blue"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/location_text"
+        android:visibility="gone"
+        />
+
+
 </RelativeLayout>

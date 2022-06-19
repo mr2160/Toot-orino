@@ -60,6 +60,18 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
             this.timestampView = (TextView) itemView.findViewById(R.id.timeslot_time_text);
             this.locationView = (TextView) itemView.findViewById(R.id.location_text);
             itemView.setOnClickListener(this);
+            itemView.findViewById(R.id.confirm_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    locationView.setVisibility(View.GONE); //TODO: Code for confirming request
+                }
+            });
+            itemView.findViewById(R.id.reject_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    locationView.setVisibility(View.GONE); //TODO: Code for rejecting request
+                }
+            });
         }
 
         @Override

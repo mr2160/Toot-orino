@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -64,10 +65,13 @@ public class MainActivityStudent extends AppCompatActivity{
             @Override
             public void onClick(View view, int position) {
                 TextView locationView = view.findViewById(R.id.location_text);
+                Button requestBtn = view.findViewById(R.id.request_button);
                 if(locationView.getVisibility() == View.GONE) {
                     locationView.setVisibility(View.VISIBLE);
+                    requestBtn.setVisibility(View.VISIBLE);
                 }else{
                     locationView.setVisibility(View.GONE);
+                    requestBtn.setVisibility(View.GONE);
                 }
             }
         };
