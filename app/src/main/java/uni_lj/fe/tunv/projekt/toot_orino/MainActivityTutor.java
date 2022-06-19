@@ -99,15 +99,15 @@ public class MainActivityTutor extends AppCompatActivity{
         listener = new TutorTimeslotAdapter.RecyclerClickListener() {
             @Override
             public void onClick(View view, int position) {
-                TextView locationView = view.findViewById(R.id.location_text);
+                View details = view.findViewById(R.id.details_tutor);
                 Button confirmBtn = view.findViewById(R.id.confirm_button);
                 Button rejectBtn = view.findViewById(R.id.reject_button);
-                if(locationView.getVisibility() == View.GONE) {
-                    locationView.setVisibility(View.VISIBLE);
+                if(details.getVisibility() == View.GONE) {
+                    details.setVisibility(View.VISIBLE);
                     confirmBtn.setVisibility(View.VISIBLE);
                     rejectBtn.setVisibility(View.VISIBLE);
                 }else{
-                    locationView.setVisibility(View.GONE);
+                    details.setVisibility(View.GONE);
                     confirmBtn.setVisibility(View.GONE);
                     rejectBtn.setVisibility(View.GONE);
                 }

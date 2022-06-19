@@ -15,4 +15,6 @@
     <string name="day_text">Mon</string>
     <string name="date_text">31</string>
     <string name="request_timeslot">Request timeslot</string>
+    <string name="upcoming_timeslots">Upcoming timeslots</string>
+    <string name="cancel_timeslot">Cancel</string>
 </resources>

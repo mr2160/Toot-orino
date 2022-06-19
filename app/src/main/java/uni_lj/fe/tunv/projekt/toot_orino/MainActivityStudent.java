@@ -64,14 +64,11 @@ public class MainActivityStudent extends AppCompatActivity{
         listener = new StudentSearchAdapter.RecyclerClickListener() {
             @Override
             public void onClick(View view, int position) {
-                TextView locationView = view.findViewById(R.id.location_text);
-                Button requestBtn = view.findViewById(R.id.request_button);
-                if(locationView.getVisibility() == View.GONE) {
-                    locationView.setVisibility(View.VISIBLE);
-                    requestBtn.setVisibility(View.VISIBLE);
+                View details = view.findViewById(R.id.details_search);
+                if(details.getVisibility() == View.GONE) {
+                    details.setVisibility(View.VISIBLE);
                 }else{
-                    locationView.setVisibility(View.GONE);
-                    requestBtn.setVisibility(View.GONE);
+                    details.setVisibility(View.GONE);
                 }
             }
         };

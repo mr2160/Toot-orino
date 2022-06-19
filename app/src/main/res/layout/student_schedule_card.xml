@@ -1,39 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_timeslot"
+    android:id="@+id/layout_timeslotSearch"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_border"
+    android:background="@drawable/rounded_border_student"
     android:layout_margin="8dp"
     android:padding="10dp">
-
-
-    <TextView
-        android:id="@+id/studentname_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:text="Janez Bojan"
-        android:padding="5dp"
-        />
 
     <TextView
         android:id="@+id/subject_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:text="Matematika"
-        android:layout_toEndOf="@id/studentname_text"
         android:padding="5dp"
-
+        android:text="Matematika"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
         />
+    <TextView
+        android:id="@+id/location_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_toEndOf="@id/subject_text"
+        android:text="Naslov ulice"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+     />
 
     <TextView
         android:id="@+id/date_text"
@@ -47,7 +44,6 @@
         android:layout_toStartOf="@id/timeslot_time_text"
         android:padding="5dp"
         />
-
     <TextView
         android:id="@+id/timeslot_time_text"
         android:layout_width="wrap_content"
@@ -60,52 +56,50 @@
         android:layout_alignParentEnd="true"
         android:padding="5dp"
         />
-
     <RelativeLayout
-        android:id="@+id/details_tutor"
+        android:id="@+id/details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/studentname_text"
+        android:layout_below="@id/subject_text"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        >
-    <TextView
-        android:id="@+id/location_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Naslov ulice"
-        android:textAlignment="center"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:padding="5dp"
-        />
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tutorname_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Janez Bojan"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/hourly_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="$11/h"
+            android:padding="5dp"
+            android:layout_toEndOf="@id/tutorname_text"
+            />
     </RelativeLayout>
 
     <Button
-        android:id="@+id/confirm_button"
-        android:layout_width="175dp"
+        android:id="@+id/cancel_timeslot"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirm"
-        android:backgroundTint="@color/green"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/details_tutor"
-        android:visibility="gone"
-        />
-
-    <Button
-        android:id="@+id/reject_button"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:text="Reject"
+        android:text="@string/cancel_timeslot"
         android:backgroundTint="@color/red"
         android:textAllCaps="false"
         android:textSize="18sp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/details_tutor"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/details"
         android:visibility="gone"
         />
+
 
 </RelativeLayout>
