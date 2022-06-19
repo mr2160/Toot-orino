@@ -48,8 +48,8 @@ public class MainActivityStudent extends AppCompatActivity{
         setOnClickListener();
         Timestamp test = new Timestamp(2000, 5, 6, 20, 20, 0, 0);
         ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
-        Timeslot timeslot1 = new Timeslot("00", "10", new Subject("Matematika", 5), "test1Details", "4", test, test, "Janezova ulica 5");
-        Timeslot timeslot2 = new Timeslot("00", "10", new Subject("Biologija", 6), "test1Details", "4", test, test, "Janezova ulica 5");
+        Timeslot timeslot1 = new Timeslot("yW8mv9udIL4Uzbfhb3pT", "Martin Rode", "gtilMNCYIyWbYV8gsJP8", "Jana Mokar", new Subject("Matematika", 5), "test1Details", "4", test, test, "Janezova ulica 5");
+        Timeslot timeslot2 = new Timeslot("00", "Jojo", "10", "Kiki", new Subject("Biologija", 6), "test1Details", "4", test, test, "Janezova ulica 5");
         timeslots.add(timeslot1);
         timeslots.add(timeslot2);
 

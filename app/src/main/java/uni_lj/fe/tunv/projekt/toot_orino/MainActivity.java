@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         tutorButton.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, MainActivityTutor.class));
         });
+
+        User.currentUserID = "yW8mv9udIL4Uzbfhb3pT";
     }
 
 }

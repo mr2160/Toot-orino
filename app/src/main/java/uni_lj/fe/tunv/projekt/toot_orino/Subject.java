@@ -2,9 +2,9 @@ package uni_lj.fe.tunv.projekt.toot_orino;
 
 public class Subject {
     private String name;
-    private Number hourlyRate;
+    private float hourlyRate;
 
-    public Subject(String name, Number hourlyRate) {
+    public Subject(String name, float hourlyRate) {
         this.name = name;
         this.hourlyRate = hourlyRate;
     }
@@ -23,7 +23,7 @@ public class Subject {
         return hourlyRate;
     }
 
-    public void setHourlyRate(Number hourlyRate) {
+    public void setHourlyRate(float hourlyRate) {
         this.hourlyRate = hourlyRate;
     }
 }

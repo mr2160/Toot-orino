@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 
 public class MainActivityTutor extends AppCompatActivity{
     private TutorTimeslotAdapter.RecyclerClickListener listener;
-
+    private DBAccess dba;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,48 +46,23 @@ public class MainActivityTutor extends AppCompatActivity{
             startActivity(new Intent(MainActivityTutor.this, SchedulingActivityTutor.class));
         });
 
-        DBAccess dba = new DBAccess();
+        this.dba = new DBAccess();
 
-        setAdapter();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        //----- ADD USER EXAMPLE --------
-
-        //User testUser = new User("Jana Mokar", Arrays.asList(), "Gimnazija Bežigrad", 7.0f, "Lorem ipsum kerjfn jsnfkj askdjfnasi fjsjd skdjfnk jdjdj asdf.", Arrays.asList(), Arrays.asList());
-
-
-        /*dba.addSubjectToUser(new Subject("Java", 15), "yW8mv9udIL4Uzbfhb3pT").onSuccessTask(suc->{
-            Log.i(null, suc.toString());
-            return null;
-        })*/
-
-
-        /*Timeslot testTimeslot = new Timeslot("yW8mv9udIL4Uzbfhb3pT",
-                                            "gtilMNCYIyWbYV8gsJP8",
-                                            new Subject("Java", 15),
-                                            "Asynchronous functions",
-                                            "8/10",
-                                            new Date(java.sql.Timestamp.valueOf("2022-06-13 10:00:00.0").getTime()),
-                                            new Date(java.sql.Timestamp.valueOf("2022-06-13 10:00:00.0").getTime()),
-                                            "Zoom");
-
-        //----- ADD TIMESLOT EXAMPLE --------
-        dba.addTimeslot(testTimeslot).onSuccessTask(suc -> {
-            Log.i(null,"POSLANO!");
-            return null;
-        }).onSuccessTask(err -> {
-            Log.e(null, "NI ŠLO!");
-            return null;
-        });*/
+        DocumentReference userRef = db.collection("Users").document(User.currentUserID);
+        userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                User user = documentSnapshot.toObject(User.class);
+                setAdapter(user.getTutorTimeslots());
+            }
+        });
     }
 
-    private void setAdapter() {
+    private void setAdapter(ArrayList<Timeslot> timeslots) {
         setOnClickListener();
-        Timestamp test = new Timestamp(2000, 5, 6, 20, 20, 0, 0);
-        ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
-        Timeslot timeslot1 = new Timeslot("00", "10", new Subject("Matematika", 5), "test1Details", "4", test, test, "Janezova ulica 5");
-        Timeslot timeslot2 = new Timeslot("00", "10", new Subject("Biologija", 6), "test1Details", "4", test, test, "Janezova ulica 5");
-        timeslots.add(timeslot1);
-        timeslots.add(timeslot2);
+
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.timeslots_tutor_recycle_view);
         TutorTimeslotAdapter TTadapter = new TutorTimeslotAdapter(timeslots, listener);

@@ -5,7 +5,9 @@ import java.util.Date;
 public class Timeslot {
 
     private String tutorID;
+    private String tutorName;
     private String studentID;
+    private String studentName;
 
     private Subject subject;
     private String details;
@@ -15,9 +17,11 @@ public class Timeslot {
     private Date endDate;
     private String location;
 
-    public Timeslot(String tutorID, String studentID, Subject subject, String details, String desiredGrade, Date startDate, Date endDate, String location) {
+    public Timeslot(String tutorID, String tutorName, String studentID, String studentName, Subject subject, String details, String desiredGrade, Date startDate, Date endDate, String location) {
         this.tutorID = tutorID;
+        this.tutorName = tutorName;
         this.studentID = studentID;
+        this.studentName = studentName;
         this.subject = subject;
         this.details = details;
         this.desiredGrade = desiredGrade;
@@ -27,6 +31,23 @@ public class Timeslot {
     }
 
     public Timeslot(){}
+
+
+    public String getTutorName() {
+        return tutorName;
+    }
+
+    public void setTutorName(String tutorName) {
+        this.tutorName = tutorName;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
 
     public String getTutorID() {
         return tutorID;

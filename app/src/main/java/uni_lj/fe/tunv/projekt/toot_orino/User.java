@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class User {
 
+    public static String currentUserID;
+
     private String name;
 
     private List<Subject> subjects;
@@ -17,9 +19,7 @@ public class User {
     private ArrayList<Timeslot> tutorTimeslots;
     private ArrayList<Timeslot> studentTimeslots;
 
-    public User(){
-
-    }
+    public User(){}
 
     public User(String name, List<Subject> subjects, String currentEducation, float rating, String bio, ArrayList<Timeslot> tutorTimeslots, ArrayList<Timeslot> studentTimeslots) {
         this.name = name;
@@ -71,7 +71,7 @@ public class User {
         this.bio = bio;
     }
 
-    public List<Timeslot> getTutorTimeslots() {
+    public ArrayList<Timeslot> getTutorTimeslots() {
         return tutorTimeslots;
     }
 
@@ -79,11 +79,12 @@ public class User {
         this.tutorTimeslots = tutorTimeslots;
     }
 
-    public List<Timeslot> getStudentTimeslots() {
+    public ArrayList<Timeslot> getStudentTimeslots() {
         return studentTimeslots;
     }
 
     public void setStudentTimeslots(ArrayList<Timeslot> studentTimeslots) {
         this.studentTimeslots = studentTimeslots;
     }
+
 }
