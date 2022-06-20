@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
             public void onUserFilled(User user) {
                 User.currentUser = user;
             }
-
             @Override
             public void onError(Exception taskException) {
                 Log.w(null, "Failed to get currentUser");

@@ -20,10 +20,12 @@ import uni_lj.fe.tunv.projekt.toot_orino.R;
 public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdapter.ViewHolder> {
     private ArrayList<Timeslot> timeslots;
     private static RecyclerClickListener listener;
+    private DBAccess dba;
 
     public TutorTimeslotAdapter(ArrayList<Timeslot> timeslots, RecyclerClickListener listener){
         this.timeslots = timeslots;
         this.listener = listener;
+        this.dba = new DBAccess();
     }
 
 
