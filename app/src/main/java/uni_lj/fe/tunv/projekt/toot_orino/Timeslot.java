@@ -5,9 +5,7 @@ import java.util.Date;
 public class Timeslot {
 
     private String tutorID;
-    private String tutorName;
     private String studentID;
-    private String studentName;
 
     private Subject subject;
     private String details;
@@ -19,37 +17,18 @@ public class Timeslot {
 
     private Boolean confirmed;
 
-    public Timeslot(String tutorID, String tutorName, String studentID, String studentName, Subject subject, String details, String desiredGrade, Date startDate, Date endDate, String location) {
+    public Timeslot(){}
+
+    public Timeslot(String tutorID, String studentID, Subject subject, String details, String desiredGrade, Date startDate, Date endDate, String location, Boolean confirmed) {
         this.tutorID = tutorID;
-        this.tutorName = tutorName;
         this.studentID = studentID;
-        this.studentName = studentName;
         this.subject = subject;
         this.details = details;
         this.desiredGrade = desiredGrade;
         this.startDate = startDate;
         this.endDate = endDate;
         this.location = location;
-        this.confirmed = false;
-    }
-
-    public Timeslot(){}
-
-
-    public String getTutorName() {
-        return tutorName;
-    }
-
-    public void setTutorName(String tutorName) {
-        this.tutorName = tutorName;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+        this.confirmed = confirmed;
     }
 
     public String getTutorID() {

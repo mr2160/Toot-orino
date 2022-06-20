@@ -1,5 +1,6 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,10 +14,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 import org.w3c.dom.Text;
@@ -48,21 +53,12 @@ public class MainActivityTutor extends AppCompatActivity{
 
         this.dba = new DBAccess();
 
+        loadTimeslots();
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference userRef = db.collection("Users").document(User.currentUserID);
-        userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                User user = documentSnapshot.toObject(User.class);
-                setAdapter(user.getTutorTimeslots());
-            }
-        });
     }
 
     private void setAdapter(ArrayList<Timeslot> timeslots) {
         setOnClickListener();
-
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.timeslots_tutor_recycle_view);
         TutorTimeslotAdapter TTadapter = new TutorTimeslotAdapter(timeslots, listener);
@@ -89,5 +85,19 @@ public class MainActivityTutor extends AppCompatActivity{
                 }
             }
         };
+    }
+
+    private void loadTimeslots(){
+        this.dba.getTBC(User.getCurrentUserID(), new OnTimeslotsFilledListener() {
+            @Override
+            public void onTimeslotsFilled(ArrayList<Timeslot> timeslots) {
+                setAdapter(timeslots);
+            }
+
+            @Override
+            public void onError(Exception taskException) {
+                Log.w(null, "Failed to load student timeslots");
+            }
+        });
     }
 }

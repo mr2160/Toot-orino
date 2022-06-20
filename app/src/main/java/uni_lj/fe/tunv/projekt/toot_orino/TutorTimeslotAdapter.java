@@ -33,7 +33,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.nameView.setText(timeslots.get(position).getStudentName()); //TODO: Get name from ID
+        holder.nameView.setText(timeslots.get(position).getStudentID()); //TODO: Get name from ID
         holder.subjectView.setText(timeslots.get(position).getSubject().getName());
         holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
         holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + timeslots.get(position).getStartDate().getMinutes());

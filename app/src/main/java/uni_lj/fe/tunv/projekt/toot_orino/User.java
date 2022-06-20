@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class User {
 
     public static String currentUserID;
+    public static User currentUser;
 
     private String name;
 
@@ -15,20 +16,26 @@ public class User {
     private float rating;
     private String bio;
 
-
-    private ArrayList<Timeslot> tutorTimeslots;
-    private ArrayList<Timeslot> studentTimeslots;
-
     public User(){}
 
-    public User(String name, List<Subject> subjects, String currentEducation, float rating, String bio, ArrayList<Timeslot> tutorTimeslots, ArrayList<Timeslot> studentTimeslots) {
+    public User(String name, List<Subject> subjects, String currentEducation, float rating, String bio) {
         this.name = name;
         this.subjects = subjects;
         this.currentEducation = currentEducation;
         this.rating = rating;
         this.bio = bio;
-        this.tutorTimeslots = tutorTimeslots;
-        this.studentTimeslots = studentTimeslots;
+    }
+
+    public static String getCurrentUserID() {
+        return currentUserID;
+    }
+
+    public static void setCurrentUserID(String currentUserID) {
+        User.currentUserID = currentUserID;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
     }
 
     public String getName() {
@@ -70,21 +77,4 @@ public class User {
     public void setBio(String bio) {
         this.bio = bio;
     }
-
-    public ArrayList<Timeslot> getTutorTimeslots() {
-        return tutorTimeslots;
-    }
-
-    public void setTutorTimeslots(ArrayList<Timeslot> tutorTimeslots) {
-        this.tutorTimeslots = tutorTimeslots;
-    }
-
-    public ArrayList<Timeslot> getStudentTimeslots() {
-        return studentTimeslots;
-    }
-
-    public void setStudentTimeslots(ArrayList<Timeslot> studentTimeslots) {
-        this.studentTimeslots = studentTimeslots;
-    }
-
 }

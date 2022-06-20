@@ -36,15 +36,6 @@ public class ScheduleActivityStudent extends AppCompatActivity {
             startActivity(new Intent(ScheduleActivityStudent.this, MainActivityStudent.class));
         });
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference userRef = db.collection("Users").document(User.currentUserID);
-        userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                User user = documentSnapshot.toObject(User.class);
-                setAdapter(user.getStudentTimeslots());
-            }
-        });
 
     }
 

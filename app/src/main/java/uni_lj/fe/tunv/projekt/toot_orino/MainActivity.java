@@ -1,13 +1,23 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,40 +37,38 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, MainActivityTutor.class));
         });
 
-        User.currentUserID = "yW8mv9udIL4Uzbfhb3pT";
 
-        Timeslot t1 = new Timeslot("yW8mv9udIL4Uzbfhb3pT",
-                                "Martin Rode",
+
+
+
+
+        User.currentUserID = "f4Y9rMCb3bzv6WDI7uxl";
+
+
+
+        DBAccess dba = new DBAccess();
+        dba.getUserFromId(User.getCurrentUserID(), new OnUserFilledListener() {
+            @Override
+            public void onUserFilled(User user) {
+                User.currentUser = user;
+            }
+
+            @Override
+            public void onError(Exception taskException) {
+                Log.w(null, "Failed to get currentUser");
+            }
+        });
+        /*Timeslot t1 = new Timeslot("F1XHkhK8H7qykgdPCm5y",
                                 "",
-                                "",
-                                new Subject("Java", 10),
+                                new Subject("Math", 10),
                                 "",
                                 "",
                                 new Date(java.sql.Timestamp.valueOf("2022-06-27 10:00:00.0").getTime()),
                                 new Date(java.sql.Timestamp.valueOf("2022-06-27 12:00:00.0").getTime()),
-                                "zoom");
+                                "zoom",
+                        false);
 
-        Timeslot t2 = new Timeslot("yW8mv9udIL4Uzbfhb3pT",
-                "Martin Rode",
-                "",
-                "",
-                new Subject("Math", 7),
-                "",
-                "",
-                new Date(java.sql.Timestamp.valueOf("2022-06-27 13:00:00.0").getTime()),
-                new Date(java.sql.Timestamp.valueOf("2022-06-27 14:00:00.0").getTime()),
-                "zoom");
-
-        Timeslot t3 = new Timeslot("gtilMNCYIyWbYV8gsJP8",
-                "Jana Mokar",
-                "",
-                "",
-                new Subject("English literature", 9),
-                "",
-                "",
-                new Date(java.sql.Timestamp.valueOf("2022-06-29 08:00:00.0").getTime()),
-                new Date(java.sql.Timestamp.valueOf("2022-06-29 09:00:00.0").getTime()),
-                "zoom");
+        dba.addTimeslot(t1);*/
     }
 
 }

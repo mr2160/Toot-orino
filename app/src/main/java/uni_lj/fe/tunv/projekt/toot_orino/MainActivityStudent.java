@@ -26,9 +26,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivityStudent extends AppCompatActivity{
     private StudentSearchAdapter.RecyclerClickListener listener;
+    private DBAccess dba;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class MainActivityStudent extends AppCompatActivity{
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapter);
 
+        this.dba = new DBAccess();
         loadTimeslots();
 
         TextView switcher = findViewById(R.id.switch_tag_student);
@@ -53,6 +56,8 @@ public class MainActivityStudent extends AppCompatActivity{
         menuSwitcher.setOnClickListener(v -> {
             startActivity(new Intent(MainActivityStudent.this, ScheduleActivityStudent.class));
         });
+
+
     }
 
     private void setAdapter(ArrayList<Timeslot> timeslots) {
@@ -81,22 +86,16 @@ public class MainActivityStudent extends AppCompatActivity{
     }
 
     private void loadTimeslots(){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Timeslots")
-                .whereEqualTo("studentID", "")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            ArrayList<Timeslot> tslts= new ArrayList<Timeslot>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Timeslot t = document.toObject(Timeslot.class);
-                                tslts.add(t);
-                            }
-                            setAdapter(tslts);
-                        }
-                    }
-                });
+        this.dba.getTBR(User.getCurrentUserID(), new OnTimeslotsFilledListener() {
+            @Override
+            public void onTimeslotsFilled(ArrayList<Timeslot> timeslots) {
+                setAdapter(timeslots);
+            }
+
+            @Override
+            public void onError(Exception taskException) {
+                Log.w(null, "Failed to load student timeslots");
+            }
+        });
     }
 }
