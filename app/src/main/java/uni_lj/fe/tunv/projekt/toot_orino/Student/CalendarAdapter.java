@@ -1,13 +1,14 @@
-package uni_lj.fe.tunv.projekt.toot_orino;
+package uni_lj.fe.tunv.projekt.toot_orino.Student;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHolder> {
     private String[] dates;

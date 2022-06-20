@@ -1,4 +1,4 @@
-package uni_lj.fe.tunv.projekt.toot_orino;
+package uni_lj.fe.tunv.projekt.toot_orino.Objects;
 
 public class Subject {
     private String name;

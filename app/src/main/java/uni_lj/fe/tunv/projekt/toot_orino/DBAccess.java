@@ -7,6 +7,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.Subject;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.User;
+
 public class DBAccess {
     private FirebaseFirestore db;
     public DBAccess(){

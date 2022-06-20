@@ -1,8 +1,10 @@
-package uni_lj.fe.tunv.projekt.toot_orino;
+package uni_lj.fe.tunv.projekt.toot_orino.Student;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class Calendar_card extends AppCompatActivity {
 

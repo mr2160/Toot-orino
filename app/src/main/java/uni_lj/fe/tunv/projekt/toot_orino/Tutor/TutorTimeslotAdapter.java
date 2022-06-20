@@ -1,7 +1,6 @@
-package uni_lj.fe.tunv.projekt.toot_orino;
+package uni_lj.fe.tunv.projekt.toot_orino.Tutor;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -9,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
 import java.util.ArrayList;
+
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
+import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdapter.ViewHolder> {
     private ArrayList<Timeslot> timeslots;
