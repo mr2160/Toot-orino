@@ -55,14 +55,18 @@
             android:id="@+id/first_input_line"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:layout_marginVertical="5dp"
+            >
 
             <EditText
                 android:id="@+id/subject_name_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
                 android:hint="@string/name_of_subject"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textSize="30dp" />
 
             <EditText
                 android:id="@+id/hourly_rate_input"
@@ -70,7 +74,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:hint="@string/hourly_charge_rate"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textSize="30dp"
+                android:layout_marginRight="30dp"
+
+                />
         </RelativeLayout>
 
         <TextView
@@ -78,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select Date:"
-            android:textSize="25dp"
+            android:textSize="30dp"
             android:layout_below="@id/first_input_line"
             android:layout_centerInParent="true"
             />
@@ -89,9 +97,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/date_picker_scheduling"
             android:textColor="@color/black"
+            android:textSize="30dp"
             style="?android:spinnerStyle"
             android:layout_centerInParent="true"
             android:onClick="openDatePicker"
+            android:gravity="center"
             />
 
 
@@ -99,34 +109,57 @@
             android:id="@+id/second_input_line"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/date_pick_btn">
+            android:layout_below="@id/date_pick_btn"
+            android:layout_marginVertical="5dp"
+            >
 
             <EditText
                 android:id="@+id/location_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/location_of_lesson"
+                android:textSize="30dp"
+                android:layout_marginLeft="30dp"
                 />
 
             <EditText
                 android:id="@+id/start_hour_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_toStartOf="@id/seperator"
+                android:hint="H"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/seperator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/start_minutes_input"
+                android:text=":"
+                android:textSize="30dp"
+                android:padding="1dp"
+                android:layout_centerVertical="true"/>
 
             <EditText
                 android:id="@+id/start_minutes_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/start_hour_input"/>
+                android:layout_alignParentEnd="true"
+                android:hint="MM"
+                android:layout_marginRight="30dp"
+                android:textSize="30dp"
+                />
         </RelativeLayout>
 
         <EditText
             android:id="@+id/details_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/second_input_line" />
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@id/second_input_line"
+            android:gravity="start"
+            android:textSize="25dp"
+            android:hint="@string/details"
+            android:layout_marginHorizontal="30dp"/>
 
 
     </RelativeLayout>
