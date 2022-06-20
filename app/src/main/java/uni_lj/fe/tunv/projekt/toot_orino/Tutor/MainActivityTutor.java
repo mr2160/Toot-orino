@@ -54,7 +54,6 @@ public class MainActivityTutor extends AppCompatActivity{
         });
 
         this.dba = new DBAccess();
-
         loadTimeslots();
 
     }

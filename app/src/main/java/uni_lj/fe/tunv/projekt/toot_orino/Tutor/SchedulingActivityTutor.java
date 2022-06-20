@@ -2,15 +2,20 @@ package uni_lj.fe.tunv.projekt.toot_orino.Tutor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import uni_lj.fe.tunv.projekt.toot_orino.R;
 import uni_lj.fe.tunv.projekt.toot_orino.Student.MainActivityStudent;
 
 public class SchedulingActivityTutor extends AppCompatActivity {
+    private DatePickerDialog datePickerDialog;
+    Button dateButton;
     float x1, x2, y1, y2;
 
     @Override
@@ -28,6 +33,7 @@ public class SchedulingActivityTutor extends AppCompatActivity {
             startActivity(new Intent(SchedulingActivityTutor.this, MainActivityTutor.class));
         });
     }
+    //Need field for subject (object of String and hourly rate), location, start, end date, details
 
     public boolean onTouchEvent(MotionEvent touchevent){
         switch (touchevent.getAction()){
@@ -44,5 +50,8 @@ public class SchedulingActivityTutor extends AppCompatActivity {
                 break;
         }
         return false;
+    }
+
+    public void openDatePicker(View view) {
     }
 }

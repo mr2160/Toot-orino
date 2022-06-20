@@ -7,13 +7,13 @@
     tools:context=".Tutor.SchedulingActivityTutor">
 
     <RelativeLayout
+        android:id="@+id/toolbar_student"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="10dp"
         android:weightSum="2"
-        android:id="@+id/toolbar_student"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/activity_tag_tutor"
@@ -43,6 +43,92 @@
             android:adjustViewBounds="true"
             android:padding="5dp"
             android:src="@mipmap/settings_icon_round" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_student">
+
+        <RelativeLayout
+            android:id="@+id/first_input_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
+            <EditText
+                android:id="@+id/subject_name_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_of_subject"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/hourly_rate_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:hint="@string/hourly_charge_rate"
+                android:inputType="text" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/date_picker_scheduling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Date:"
+            android:textSize="25dp"
+            android:layout_below="@id/first_input_line"
+            android:layout_centerInParent="true"
+            />
+
+        <Button
+            android:id="@+id/date_pick_btn"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date_picker_scheduling"
+            android:textColor="@color/black"
+            style="?android:spinnerStyle"
+            android:layout_centerInParent="true"
+            android:onClick="openDatePicker"
+            />
+
+
+        <RelativeLayout
+            android:id="@+id/second_input_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date_pick_btn">
+
+            <EditText
+                android:id="@+id/location_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/location_of_lesson"
+                />
+
+            <EditText
+                android:id="@+id/start_hour_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                />
+
+            <EditText
+                android:id="@+id/start_minutes_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/start_hour_input"/>
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/details_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/second_input_line" />
+
+
     </RelativeLayout>
 
     <RelativeLayout

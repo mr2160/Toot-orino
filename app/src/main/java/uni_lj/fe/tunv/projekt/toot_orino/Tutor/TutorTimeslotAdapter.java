@@ -38,9 +38,8 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String username;
+        String username = "bruh";
         username = getUsername(timeslots.get(position).getStudentID());
-
         holder.nameView.setText(username);
         holder.subjectView.setText(timeslots.get(position).getSubject().getName());
         holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
@@ -49,19 +48,19 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
     }
 
     private String getUsername(String id) {
-        User user = new User();
-        user.currentUserID = id;
+        final User[] userTutor = new User[1];
         DBAccess dba = new DBAccess();
         dba.getUserFromId(id, new OnUserFilledListener() {
             @Override
             public void onUserFilled(User user) {
-                User.currentUser = user;            }
+                userTutor[0] = user;
+            }
             @Override
             public void onError(Exception taskException) {
                 Log.w(null, "Failed to get user");
             }
         });
-        return user.currentUser.getName();
+        return userTutor[0].currentUser.getName();
     }
 
     @Override

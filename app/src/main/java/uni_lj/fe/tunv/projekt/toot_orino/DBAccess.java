@@ -1,5 +1,7 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
