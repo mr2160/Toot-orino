@@ -72,7 +72,7 @@ public class MainActivityStudent extends AppCompatActivity{
             case MotionEvent.ACTION_UP:
                 x2 = touchevent.getX();
                 y2 = touchevent.getY();
-                if(x2 < x1){
+                if(x2 < x1-8){
                     Intent i = new Intent(MainActivityStudent.this, ScheduleActivityStudent.class);
                     startActivity (i);
                 }

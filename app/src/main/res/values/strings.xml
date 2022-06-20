@@ -17,7 +17,8 @@
     <string name="request_timeslot">Request timeslot</string>
     <string name="upcoming_timeslots">Upcoming timeslots</string>
     <string name="cancel_timeslot">Cancel</string>
-    <string name="hourly_charge_rate">Hourly charge rate</string>
-    <string name="name_of_subject">Name of subject</string>
-    <string name="location_of_lesson">Location of lesson</string>
+    <string name="hourly_charge_rate">Hourly charge</string>
+    <string name="name_of_subject">Subject</string>
+    <string name="location_of_lesson">Lesson location</string>
+    <string name="details">Details</string>
 </resources>

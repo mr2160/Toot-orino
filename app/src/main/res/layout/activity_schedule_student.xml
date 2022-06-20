@@ -57,14 +57,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:paddingRight="15dp"
             android:text="@string/upcoming_timeslots"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingRight="15dp"
-            android:layout_alignParentEnd="true"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/upcoming_bar"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
