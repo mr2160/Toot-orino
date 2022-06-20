@@ -39,19 +39,18 @@
         />
 
     <Button
-
         android:id="@+id/tutor_mode_btn"
         android:layout_width="250sp"
         android:layout_height="50sp"
-        android:layout_marginTop="10dp"
-        android:text="@string/tutor_btn_text"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/tutor_main_blue"
+        android:text="@string/tutor_btn_text"
         android:textAllCaps="false"
         android:textSize="18sp"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtext"
-        />
+        app:layout_constraintTop_toBottomOf="@id/subtext" />
 
     <Button
         android:id="@+id/student_mode_btn"

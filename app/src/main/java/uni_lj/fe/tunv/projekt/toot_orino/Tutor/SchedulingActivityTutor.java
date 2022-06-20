@@ -11,12 +11,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Date;
 
+import uni_lj.fe.tunv.projekt.toot_orino.DBAccess;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.Subject;
 import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.User;
+import uni_lj.fe.tunv.projekt.toot_orino.OnUserFilledListener;
 import uni_lj.fe.tunv.projekt.toot_orino.R;
 import uni_lj.fe.tunv.projekt.toot_orino.Student.MainActivityStudent;
 
@@ -44,9 +49,59 @@ public class SchedulingActivityTutor extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.date_pick_btn);
         dateButton.setText(getTodaysDate());
-        
 
+        //Need field for subject (object of String and hourly rate), location, start, end date, details
 
+        TextView createTimeslot = findViewById(R.id.create_timeslot_button);
+        createTimeslot.setOnClickListener(v -> {
+
+            EditText subjectText = (EditText) findViewById(R.id.subject_name_input);
+            String subject = subjectText.getText().toString();
+
+            boolean doit = true;
+            EditText hourlyRateText = (EditText) findViewById(R.id.hourly_rate_input);
+            int hourlyRate = ((!hourlyRateText.getText().toString().isEmpty())) ? Integer.parseInt(hourlyRateText.getText().toString()) : -1;
+            doit = hourlyRate<0 ? false : true;
+
+            EditText locationText = (EditText) findViewById(R.id.location_input);
+            String location = locationText.getText().toString();
+
+            EditText hourStart = (EditText) findViewById(R.id.start_hour_input);
+            int hourS = ((!hourStart.getText().toString().isEmpty())) ? Integer.parseInt(hourStart.getText().toString()) : -1;
+            doit = hourS<0 ? false : true;
+
+            EditText minutesStart = (EditText) findViewById(R.id.start_minutes_input);
+            int minutesS = ((!minutesStart.getText().toString().isEmpty())) ? Integer.parseInt(minutesStart.getText().toString()) : -1;
+            doit = minutesS<0 ? false : true;
+
+            EditText detailText = (EditText) findViewById(R.id.details_input);
+            String details = detailText.getText().toString();
+
+            currentDate.setHours(hourS);
+            currentDate.setMinutes(minutesS);
+
+            Date startDate = currentDate;
+            Date endDate = currentDate;
+            endDate.setHours(hourS + 1);
+
+            Timeslot newTimeslot = new Timeslot(User.currentUserID,
+                    "",
+                    new Subject(subject, hourlyRate),
+                    details,
+                    "",
+                    startDate,
+                    endDate,
+                    location,
+                    false);
+            if (newTimeslot.getSubject().getName().isEmpty() || newTimeslot.getLocation().isEmpty() || doit == false){
+                Log.w(null, "need more information to create timeslot");
+            }else{
+                Log.w(null, "Created timeslot");
+                Log.w(null, String.valueOf(minutesS));
+                DBAccess dba = new DBAccess();
+                dba.addTimeslot(newTimeslot);
+            }
+        });
     }
 
     private String getTodaysDate() {
@@ -85,7 +140,6 @@ public class SchedulingActivityTutor extends AppCompatActivity {
     private String makeDateString(int day, int month, int year) {
         return day+" "+month+" "+ year;
     }
-    //Need field for subject (object of String and hourly rate), location, start, end date, details
 
     public void openDatePicker(View view) {
         datePickerDialog.show();

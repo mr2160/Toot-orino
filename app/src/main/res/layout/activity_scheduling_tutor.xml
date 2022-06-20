@@ -49,7 +49,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_student">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_student"
+        android:id="@+id/info_body">
 
         <RelativeLayout
             android:id="@+id/first_input_line"
@@ -154,15 +155,28 @@
         <EditText
             android:id="@+id/details_input"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="180dp"
             android:layout_below="@id/second_input_line"
+            android:layout_marginHorizontal="30dp"
             android:gravity="start"
-            android:textSize="25dp"
             android:hint="@string/details"
-            android:layout_marginHorizontal="30dp"/>
-
-
+            android:textSize="25dp" />
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/create_timeslot_button"
+        android:layout_width="250sp"
+        android:layout_height="60sp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/green"
+        android:text="Create Timeslot"
+        android:textAllCaps="false"
+        android:textSize="25sp"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/info_body"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
