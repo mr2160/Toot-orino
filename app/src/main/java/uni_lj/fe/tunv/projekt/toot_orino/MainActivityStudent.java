@@ -1,16 +1,27 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -31,7 +42,7 @@ public class MainActivityStudent extends AppCompatActivity{
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapter);
 
-        setAdapter();
+        loadTimeslots();
 
         TextView switcher = findViewById(R.id.switch_tag_student);
         switcher.setOnClickListener(v -> {
@@ -44,14 +55,9 @@ public class MainActivityStudent extends AppCompatActivity{
         });
     }
 
-    private void setAdapter() {
+    private void setAdapter(ArrayList<Timeslot> timeslots) {
         setOnClickListener();
-        Timestamp test = new Timestamp(2000, 5, 6, 20, 20, 0, 0);
-        ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
-        Timeslot timeslot1 = new Timeslot("yW8mv9udIL4Uzbfhb3pT", "Martin Rode", "gtilMNCYIyWbYV8gsJP8", "Jana Mokar", new Subject("Matematika", 5), "test1Details", "4", test, test, "Janezova ulica 5");
-        Timeslot timeslot2 = new Timeslot("00", "Jojo", "10", "Kiki", new Subject("Biologija", 6), "test1Details", "4", test, test, "Janezova ulica 5");
-        timeslots.add(timeslot1);
-        timeslots.add(timeslot2);
+
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.timeslots_student_recycle_view);
         StudentSearchAdapter STadapter = new StudentSearchAdapter(timeslots, listener);
@@ -72,5 +78,25 @@ public class MainActivityStudent extends AppCompatActivity{
                 }
             }
         };
+    }
+
+    private void loadTimeslots(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Timeslots")
+                .whereEqualTo("studentID", "")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<Timeslot> tslts= new ArrayList<Timeslot>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Timeslot t = document.toObject(Timeslot.class);
+                                tslts.add(t);
+                            }
+                            setAdapter(tslts);
+                        }
+                    }
+                });
     }
 }

@@ -26,12 +26,15 @@ public class DBAccess {
         Task<DocumentReference> addTask = this.db.collection("Timeslots").add(timeslot);
 
         DocumentReference tutorRef = db. collection("Users").document(timeslot.getTutorID());
-        DocumentReference studentRef = db. collection("Users").document(timeslot.getStudentID());
-
         Task<Void> tutorTask = tutorRef.update("tutorTimeslots", FieldValue.arrayUnion(timeslot));
-        Task<Void> studentTask = studentRef.update("studentTimeslots", FieldValue.arrayUnion(timeslot));
 
-        return Tasks.whenAll(addTask, tutorTask, studentTask);
+        if(timeslot.getStudentID() != ""){
+            DocumentReference studentRef = db. collection("Users").document(timeslot.getStudentID());
+            Task<Void> studentTask = studentRef.update("studentTimeslots", FieldValue.arrayUnion(timeslot));
+            return Tasks.whenAll(addTask, tutorTask, studentTask);
+        }
+
+        return Tasks.whenAll(addTask, tutorTask);
     }
 
     public Task<DocumentSnapshot> getUserById(String userId){

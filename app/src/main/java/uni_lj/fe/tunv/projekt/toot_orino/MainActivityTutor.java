@@ -48,8 +48,8 @@ public class MainActivityTutor extends AppCompatActivity{
 
         this.dba = new DBAccess();
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference userRef = db.collection("Users").document(User.currentUserID);
         userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

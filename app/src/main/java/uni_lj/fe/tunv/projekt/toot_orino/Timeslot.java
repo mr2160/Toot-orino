@@ -17,6 +17,8 @@ public class Timeslot {
     private Date endDate;
     private String location;
 
+    private Boolean confirmed;
+
     public Timeslot(String tutorID, String tutorName, String studentID, String studentName, Subject subject, String details, String desiredGrade, Date startDate, Date endDate, String location) {
         this.tutorID = tutorID;
         this.tutorName = tutorName;
@@ -28,6 +30,7 @@ public class Timeslot {
         this.startDate = startDate;
         this.endDate = endDate;
         this.location = location;
+        this.confirmed = false;
     }
 
     public Timeslot(){}
@@ -111,5 +114,13 @@ public class Timeslot {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Boolean getConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(Boolean confirmed) {
+        this.confirmed = confirmed;
     }
 }

@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -21,8 +26,6 @@ public class ScheduleActivityStudent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_student);
 
-        setAdapter();
-
         TextView switcher = findViewById(R.id.switch_tag_student);
         switcher.setOnClickListener(v -> {
             startActivity(new Intent(ScheduleActivityStudent.this, MainActivityTutor.class));
@@ -33,16 +36,21 @@ public class ScheduleActivityStudent extends AppCompatActivity {
             startActivity(new Intent(ScheduleActivityStudent.this, MainActivityStudent.class));
         });
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference userRef = db.collection("Users").document(User.currentUserID);
+        userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                User user = documentSnapshot.toObject(User.class);
+                setAdapter(user.getStudentTimeslots());
+            }
+        });
+
     }
 
-    private void setAdapter() {
+    private void setAdapter(ArrayList<Timeslot> timeslots) {
         setOnClickListener();
-        Timestamp test = new Timestamp(2000, 5, 6, 20, 20, 0, 0);
-        ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
-        Timeslot timeslot1 = new Timeslot("yW8mv9udIL4Uzbfhb3pT", "Martin Rode", "gtilMNCYIyWbYV8gsJP8", "Jana Mokar", new Subject("Matematika", 5), "test1Details", "4", test, test, "Janezova ulica 5");
-        Timeslot timeslot2 = new Timeslot("00", "Jojo", "10", "Kiki", new Subject("Biologija", 6), "test1Details", "4", test, test, "Janezova ulica 5");
-        timeslots.add(timeslot1);
-        timeslots.add(timeslot2);
+
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.schedule_student_recycle_view);
         StudentScheduleAdapter STadapter = new StudentScheduleAdapter(timeslots, listener);
