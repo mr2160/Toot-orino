@@ -1,4 +1,4 @@
-package uni_lj.fe.tunv.projekt.toot_orino;
+package uni_lj.fe.tunv.projekt.toot_orino.Student;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
+import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class StudentSearchAdapter extends RecyclerView.Adapter<StudentSearchAdapter.ViewHolder> {
     private ArrayList<Timeslot> timeslots;

@@ -19,6 +19,12 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.Subject;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.User;
+import uni_lj.fe.tunv.projekt.toot_orino.Student.MainActivityStudent;
+import uni_lj.fe.tunv.projekt.toot_orino.Tutor.MainActivityTutor;
+
 
 public class MainActivity extends AppCompatActivity {
 

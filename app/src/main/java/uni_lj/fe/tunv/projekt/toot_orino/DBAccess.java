@@ -14,6 +14,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.Subject;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.User;
+
 public class DBAccess {
     private FirebaseFirestore db;
     public DBAccess(){

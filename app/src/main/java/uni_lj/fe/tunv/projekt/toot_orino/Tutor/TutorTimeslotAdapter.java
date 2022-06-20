@@ -1,20 +1,23 @@
-package uni_lj.fe.tunv.projekt.toot_orino;
+package uni_lj.fe.tunv.projekt.toot_orino.Tutor;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
-public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentScheduleAdapter.ViewHolder> {
-    private ArrayList<Timeslot> timeslots;
-    private static StudentScheduleAdapter.RecyclerClickListener listener;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
+import uni_lj.fe.tunv.projekt.toot_orino.R;
 
-    public StudentScheduleAdapter(ArrayList<Timeslot> timeslots, StudentScheduleAdapter.RecyclerClickListener listener){
+public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdapter.ViewHolder> {
+    private ArrayList<Timeslot> timeslots;
+    private static RecyclerClickListener listener;
+
+    public TutorTimeslotAdapter(ArrayList<Timeslot> timeslots, RecyclerClickListener listener){
         this.timeslots = timeslots;
         this.listener = listener;
     }
@@ -22,21 +25,19 @@ public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentSchedule
 
     @NonNull
     @Override
-    public StudentScheduleAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TutorTimeslotAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.student_schedule_card, parent, false);
-        StudentScheduleAdapter.ViewHolder viewHolder = new StudentScheduleAdapter.ViewHolder(listItem);
+        View listItem= layoutInflater.inflate(R.layout.tutor_timeslot_card, parent, false);
+        TutorTimeslotAdapter.ViewHolder viewHolder = new TutorTimeslotAdapter.ViewHolder(listItem);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StudentScheduleAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.nameView.setText(timeslots.get(position).getStudentID()); //TODO: Get name from ID
         holder.subjectView.setText(timeslots.get(position).getSubject().getName());
-        holder.locationView.setText(timeslots.get(position).getLocation());
         holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
         holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + timeslots.get(position).getStartDate().getMinutes());
-        holder.nameView.setText(timeslots.get(position).getStudentID());
-        holder.hourlyrateView.setText(new StringBuilder().append("$").append(timeslots.get(position).getSubject().getHourlyRate()).append("/h"));
 
     }
     @Override
@@ -45,30 +46,43 @@ public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentSchedule
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
+        public TextView nameView;
         public TextView subjectView;
-        public TextView locationView;
         public TextView dateView;
         public TextView timestampView;
-        public TextView nameView;
-        public TextView hourlyrateView;
+        public TextView locationView;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
+            this.nameView = (TextView) itemView.findViewById(R.id.studentname_text);
             this.subjectView = (TextView) itemView.findViewById(R.id.subject_text);
-            this.locationView = (TextView) itemView.findViewById(R.id.location_text);
             this.dateView = (TextView) itemView.findViewById(R.id.date_text);
             this.timestampView = (TextView) itemView.findViewById(R.id.timeslot_time_text);
-            this.nameView = (TextView) itemView.findViewById(R.id.tutorname_text); //TODO: Get actual name from ID
-            this.hourlyrateView = (TextView) itemView.findViewById(R.id.hourly_rate);
+            this.locationView = (TextView) itemView.findViewById(R.id.location_text);
             itemView.setOnClickListener(this);
-            itemView.findViewById(R.id.cancel_timeslot).setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.confirm_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    locationView.setVisibility(View.GONE); //TODO: Code for canceling timeslot
+                    locationView.setVisibility(View.GONE); //TODO: Code for confirming request
+                    ConfirmRequest();
                 }
             });
+            itemView.findViewById(R.id.reject_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    locationView.setVisibility(View.GONE); //TODO: Code for rejecting request
+                    RejectRequest();
+                }
+            });
+        }
+
+        public void ConfirmRequest(){
+
+        }
+
+        public  void RejectRequest(){
+
         }
 
         @Override

@@ -10,19 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tootorino">
         <activity
-            android:name=".SchedulingActivityTutor"
+            android:name=".Tutor.SchedulingActivityTutor"
             android:exported="false" />
         <activity
-            android:name=".ScheduleActivityStudent"
+            android:name=".Student.ScheduleActivityStudent"
             android:exported="false" />
         <activity
-            android:name=".Calendar_card"
+            android:name=".Student.Calendar_card"
             android:exported="false" />
         <activity
-            android:name=".MainActivityStudent"
+            android:name=".Student.MainActivityStudent"
             android:exported="false" />
         <activity
-            android:name=".MainActivityTutor"
+            android:name=".Tutor.MainActivityTutor"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
