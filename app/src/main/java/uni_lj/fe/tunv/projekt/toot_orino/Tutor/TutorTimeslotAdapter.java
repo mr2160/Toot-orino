@@ -3,6 +3,7 @@ package uni_lj.fe.tunv.projekt.toot_orino.Tutor;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import uni_lj.fe.tunv.projekt.toot_orino.DBAccess;
 import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.User;
+import uni_lj.fe.tunv.projekt.toot_orino.OnUserFilledListener;
 import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdapter.ViewHolder> {
@@ -34,12 +38,32 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.nameView.setText(timeslots.get(position).getStudentID()); //TODO: Get name from ID
+        String username;
+        username = getUsername(timeslots.get(position).getStudentID());
+
+        holder.nameView.setText(username);
         holder.subjectView.setText(timeslots.get(position).getSubject().getName());
         holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
         holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + timeslots.get(position).getStartDate().getMinutes());
 
     }
+
+    private String getUsername(String id) {
+        User user = new User();
+        user.currentUserID = id;
+        DBAccess dba = new DBAccess();
+        dba.getUserFromId(id, new OnUserFilledListener() {
+            @Override
+            public void onUserFilled(User user) {
+                User.currentUser = user;            }
+            @Override
+            public void onError(Exception taskException) {
+                Log.w(null, "Failed to get user");
+            }
+        });
+        return user.currentUser.getName();
+    }
+
     @Override
     public int getItemCount() {
         return timeslots.size();

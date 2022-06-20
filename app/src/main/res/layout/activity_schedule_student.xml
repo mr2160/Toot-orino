@@ -98,6 +98,16 @@
             android:textColor="@color/white"
             android:textSize="35sp"
             android:layout_centerHorizontal="true"/>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="23dp"
+            android:layout_toEndOf="@+id/switch_tag_student"
+            android:adjustViewBounds="true"
+            android:padding="5dp"
+            android:src="@drawable/switch_icon" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
