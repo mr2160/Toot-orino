@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import uni_lj.fe.tunv.projekt.toot_orino.DBAccess;
 import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
 import uni_lj.fe.tunv.projekt.toot_orino.Objects.User;
+import uni_lj.fe.tunv.projekt.toot_orino.OnTimeslotsFilledListener;
 import uni_lj.fe.tunv.projekt.toot_orino.R;
 import uni_lj.fe.tunv.projekt.toot_orino.Student.MainActivityStudent;
 
