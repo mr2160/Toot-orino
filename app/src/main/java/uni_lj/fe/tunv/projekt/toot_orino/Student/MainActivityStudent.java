@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,11 +44,10 @@ public class MainActivityStudent extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_student);
 
-        String[] dates = getDates();
-        String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.calendar_recycle_view);
-        CalendarAdapter adapter = new CalendarAdapter(dates, days, getCurrentDate(), this);
+        CalendarAdapter adapter = new CalendarAdapter(getCurrentDate(), this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapter);
@@ -65,25 +65,16 @@ public class MainActivityStudent extends AppCompatActivity{
             startActivity(new Intent(MainActivityStudent.this, ScheduleActivityStudent.class));
         });
 
+        ImageView rightArrow = findViewById(R.id.right_arrow);
+        rightArrow.setOnClickListener(v -> {
+            adapter.nextWeek();
+        });
 
-    }
+        ImageView leftArrow = findViewById(R.id.left_arrow);
+        leftArrow.setOnClickListener(v -> {
+            adapter.previousWeek();
+        });
 
-
-
-    public String[] getDates(){
-        DateFormat format = new SimpleDateFormat("dd");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setFirstDayOfWeek(Calendar.MONDAY);
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-
-        String[] dates = new String[7];
-        for (int i = 0; i < 7; i++)
-        {
-            dates[i] = format.format(calendar.getTime());
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-        }
-
-        return dates;
     }
 
     public String getCurrentDate(){
@@ -91,6 +82,7 @@ public class MainActivityStudent extends AppCompatActivity{
         Calendar calendar = Calendar.getInstance();
         return format.format(calendar.getTime());
     }
+
 
     public boolean onTouchEvent(MotionEvent touchevent){
         switch (touchevent.getAction()){

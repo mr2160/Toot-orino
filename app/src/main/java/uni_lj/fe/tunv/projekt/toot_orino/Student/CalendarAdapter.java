@@ -13,19 +13,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHolder> {
     private String[] dates;
-    private String[] days;
+    private String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
     private String selectedDate;
     private MainActivityStudent activity;
+    private int offset;
 
-    public CalendarAdapter(String[] dates, String[] days, String currentDate, MainActivityStudent activity){
-        this.dates = dates;
-        this.days = days;
+    public CalendarAdapter(String currentDate, MainActivityStudent activity){
+        this.dates = getDates();
         this.selectedDate = currentDate;
         this.activity = activity;
+        this.offset = 0;
     }
     @NonNull
     @Override
@@ -72,5 +77,43 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
             this.dayView = (TextView) itemView.findViewById(R.id.day_text);
             this.dateView = (TextView) itemView.findViewById(R.id.date_text);
         }
+    }
+
+    public String[] getDates(){
+        DateFormat format = new SimpleDateFormat("dd");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        calendar.add(Calendar.DAY_OF_MONTH, 7*this.offset);
+        String[] dates = new String[7];
+        for (int i = 0; i < 7; i++)
+        {
+            dates[i] = format.format(calendar.getTime());
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        return dates;
+    }
+
+
+
+
+    public void nextWeek(){
+        if(this.offset > 2){
+            return;
+        }
+        this.offset += 1;
+        this.dates = getDates();
+        notifyDataSetChanged();
+    }
+
+    public void previousWeek(){
+        if(this.offset < -2){
+            return;
+        }
+        this.offset -= 1;
+        this.dates = getDates();
+        notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 }
