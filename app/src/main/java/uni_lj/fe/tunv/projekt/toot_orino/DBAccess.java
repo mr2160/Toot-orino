@@ -96,8 +96,8 @@ public class DBAccess {
         ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
         ArrayList<String> timeslotIDs = new ArrayList<String>();
         this.db.collection("Timeslots").whereEqualTo("tutorID", userId)
-                .whereEqualTo("confirmed", false)
-                .whereNotEqualTo("studentID", "")
+                //.whereEqualTo("confirmed", false)
+                //.whereNotEqualTo("studentID", "")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -108,6 +108,7 @@ public class DBAccess {
                                 timeslots.add(t);
                                 timeslotIDs.add(document.getId());
                             }
+                            Log.w(null, String.valueOf(timeslots.size()));
                             listener.onTimeslotsFilled(timeslots, timeslotIDs);
                         }
                     }

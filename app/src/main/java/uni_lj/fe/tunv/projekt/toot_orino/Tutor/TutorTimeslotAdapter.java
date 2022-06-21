@@ -47,12 +47,23 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        fillUserInfo(timeslots.get(position).getStudentID(), holder.nameView, holder.educationView);
-        holder.nameView.setText("Name unavailable");
+        if(timeslots.get(position).getStudentID().isEmpty() == false){
+            fillUserInfo(timeslots.get(position).getStudentID(), holder.nameView, holder.educationView);
+        }
+        holder.nameView.setText("No student");
+        holder.educationView.setText("No student");
         holder.subjectView.setText(timeslots.get(position).getSubject().getName());
         holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
-        holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + timeslots.get(position).getStartDate().getMinutes());
+        String minutes = String.valueOf(timeslots.get(position).getStartDate().getMinutes());
+        if(minutes.length()<2){
+            minutes = "0" + minutes;
+        }
+        holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + minutes);
         holder.timeslotID = timeslotIDs.get(position);
+        holder.locationView.setText((timeslots.get(position).getLocation()));
+        if(timeslots.get(position).getConfirmed() == false) {
+            holder.pendingView.setText("Pending");
+        }
     }
 
 
@@ -86,6 +97,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
         public String timeslotID;
         public TextView locationView;
         public TextView educationView;
+        public TextView pendingView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -95,6 +107,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
             this.timestampView = (TextView) itemView.findViewById(R.id.timeslot_time_text);
             this.locationView = (TextView) itemView.findViewById(R.id.location_text);
             this.educationView = (TextView) itemView.findViewById(R.id.education_text);
+            this.pendingView =(TextView) itemView.findViewById(R.id.pending_text);
             itemView.setOnClickListener(this);
             itemView.findViewById(R.id.confirm_button).setOnClickListener(new View.OnClickListener() {
                 @Override

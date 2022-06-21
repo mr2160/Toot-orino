@@ -92,14 +92,19 @@ public class MainActivityTutor extends AppCompatActivity{
                 View details = view.findViewById(R.id.details_tutor);
                 Button confirmBtn = view.findViewById(R.id.confirm_button);
                 Button rejectBtn = view.findViewById(R.id.reject_button);
+                TextView pending = view.findViewById(R.id.pending_text);
                 if(details.getVisibility() == View.GONE) {
                     details.setVisibility(View.VISIBLE);
-                    confirmBtn.setVisibility(View.VISIBLE);
-                    rejectBtn.setVisibility(View.VISIBLE);
+                    if(pending.getText() == "Pending") {
+                        confirmBtn.setVisibility(View.VISIBLE);
+                        rejectBtn.setVisibility(View.VISIBLE);
+                    }
                 }else{
                     details.setVisibility(View.GONE);
-                    confirmBtn.setVisibility(View.GONE);
-                    rejectBtn.setVisibility(View.GONE);
+                    if(pending.getText() == "Pending") {
+                        confirmBtn.setVisibility(View.GONE);
+                        rejectBtn.setVisibility(View.GONE);
+                    }
                 }
             }
         };

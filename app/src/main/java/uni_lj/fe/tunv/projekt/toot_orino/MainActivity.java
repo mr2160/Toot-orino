@@ -64,14 +64,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*Timeslot t1 = new Timeslot("F1XHkhK8H7qykgdPCm5y", //F1XHkhK8H7qykgdPCm5y
-                                "f4Y9rMCb3bzv6WDI7uxl",
-                                new Subject("Biology", 11),
+        /*Timeslot t1 = new Timeslot("f4Y9rMCb3bzv6WDI7uxl", //F1XHkhK8H7qykgdPCm5y
+                                "",
+                                new Subject("Geografija", 9),
                                 "",
                                 "",
-                                new Date(java.sql.Timestamp.valueOf("2022-06-24 10:20:00.0").getTime()),
-                                new Date(java.sql.Timestamp.valueOf("2022-06-24 12:20:00.0").getTime()),
-                                "zoom",
+                                new Date(java.sql.Timestamp.valueOf("2022-06-25 10:20:00.0").getTime()),
+                                new Date(java.sql.Timestamp.valueOf("2022-06-25 12:20:00.0").getTime()),
+                                "Žilberterjeva 5",
                         true);
 
         dba.addTimeslot(t1);*/
