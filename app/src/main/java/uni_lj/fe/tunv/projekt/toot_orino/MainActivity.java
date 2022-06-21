@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                                 new Date(java.sql.Timestamp.valueOf("2022-06-25 10:20:00.0").getTime()),
                                 new Date(java.sql.Timestamp.valueOf("2022-06-25 12:20:00.0").getTime()),
                                 "Žilberterjeva 5",
-                        true);
+                        false);
 
         dba.addTimeslot(t1);*/
     }

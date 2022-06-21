@@ -47,7 +47,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        if(timeslots.get(position).getStudentID().isEmpty() == false){
+        if(!timeslots.get(position).getStudentID().isEmpty()){
             fillUserInfo(timeslots.get(position).getStudentID(), holder.nameView, holder.educationView);
         }
         holder.nameView.setText("No student");
@@ -61,7 +61,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
         holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + minutes);
         holder.timeslotID = timeslotIDs.get(position);
         holder.locationView.setText((timeslots.get(position).getLocation()));
-        if(timeslots.get(position).getConfirmed() == false) {
+        if(!timeslots.get(position).getConfirmed() && !timeslots.get(position).getStudentID().isEmpty()) {
             holder.pendingView.setText("Pending");
         }
     }
@@ -117,7 +117,9 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
                     dba.confirmTimeslot(timeslotID).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            itemView.setVisibility(View.GONE);
+                            itemView.findViewById(R.id.reject_button).setVisibility(View.GONE);
+                            itemView.findViewById(R.id.confirm_button).setVisibility(View.GONE);
+                            ((TextView) itemView.findViewById(R.id.pending_text)).setText("");
                         }
                     });
                 }
