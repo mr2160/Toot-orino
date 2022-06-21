@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -36,10 +37,10 @@ public class SchedulingActivityTutor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scheduling_tutor);
 
-        TextView switcher = findViewById(R.id.switch_tag_tutor);
+        /*TextView switcher = findViewById(R.id.switch_tag_tutor);
         switcher.setOnClickListener(v -> {
             startActivity(new Intent(SchedulingActivityTutor.this, MainActivityStudent.class));
-        });
+        });*/
 
         TextView menuSwitcher = findViewById(R.id.activity_tag_tutor);
         menuSwitcher.setOnClickListener(v -> {
@@ -91,13 +92,23 @@ public class SchedulingActivityTutor extends AppCompatActivity {
                     endDate,
                     location,
                     false);
+
+
             if (newTimeslot.getSubject().getName().isEmpty() || newTimeslot.getLocation().isEmpty() || doit == false){
-                Log.w(null, "need more information to create timeslot");
+                Log.w(null, "Need more information to create timeslot");
+                Toast.makeText(getBaseContext(), "Need more info", Toast.LENGTH_LONG).show();
             }else{
                 Log.w(null, "Created timeslot");
                 Log.w(null, String.valueOf(minutesS));
                 DBAccess dba = new DBAccess();
                 dba.addTimeslot(newTimeslot);
+
+                Toast.makeText(getBaseContext(), "Created timeslot", Toast.LENGTH_LONG).show();
+                subjectText.getText().clear();
+                hourlyRateText.getText().clear();
+                locationText.getText().clear();
+                hourStart.getText().clear();
+                minutesStart.getText().clear();
             }
         });
     }
