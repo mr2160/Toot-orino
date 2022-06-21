@@ -47,13 +47,13 @@ public class MainActivityStudent extends AppCompatActivity{
         String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.calendar_recycle_view);
-        CalendarAdapter adapter = new CalendarAdapter(dates, days, getCurrentDate());
+        CalendarAdapter adapter = new CalendarAdapter(dates, days, getCurrentDate(), this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapter);
 
         this.dba = new DBAccess();
-        loadTimeslots();
+        loadTimeslots(getCurrentDate());
 
         TextView switcher = findViewById(R.id.switch_tag_student);
         switcher.setOnClickListener(v -> {
@@ -67,6 +67,8 @@ public class MainActivityStudent extends AppCompatActivity{
 
 
     }
+
+
 
     public String[] getDates(){
         DateFormat format = new SimpleDateFormat("dd");
@@ -131,10 +133,18 @@ public class MainActivityStudent extends AppCompatActivity{
         };
     }
 
-    private void loadTimeslots(){
+    public void loadTimeslots(String date){
         this.dba.getTBR(User.getCurrentUserID(), new OnTimeslotsFilledListener() {
             @Override
             public void onTimeslotsFilled(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs) {
+                DateFormat format = new SimpleDateFormat("dd");
+                for(Timeslot timeslot: timeslots){
+
+                    String TSdate = format.format(timeslot.getStartDate().getTime());
+                    if(TSdate.compareTo(date)!=0){
+                        timeslots.remove(timeslot);
+                    }
+                }
                 setAdapter(timeslots, timeslotIDs);
             }
 

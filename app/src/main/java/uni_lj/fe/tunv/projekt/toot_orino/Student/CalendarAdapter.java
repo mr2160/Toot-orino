@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,11 +19,13 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
     private String[] dates;
     private String[] days;
     private String selectedDate;
+    private MainActivityStudent activity;
 
-    public CalendarAdapter(String[] dates, String[] days, String currentDate){
+    public CalendarAdapter(String[] dates, String[] days, String currentDate, MainActivityStudent activity){
         this.dates = dates;
         this.days = days;
         this.selectedDate = currentDate;
+        this.activity = activity;
     }
     @NonNull
     @Override
@@ -48,6 +51,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
             public void onClick(View view) {
                 selectedDate=dates[holder.getAdapterPosition()];
                 notifyDataSetChanged();
+                activity.loadTimeslots(selectedDate);
             }
         });
     }
