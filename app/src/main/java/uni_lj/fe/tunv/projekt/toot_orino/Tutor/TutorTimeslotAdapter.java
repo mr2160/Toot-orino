@@ -132,7 +132,11 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
                     dba.rejectTimeslot(timeslotID).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            itemView.setVisibility(View.GONE);
+                            itemView.findViewById(R.id.reject_button).setVisibility(View.GONE);
+                            itemView.findViewById(R.id.confirm_button).setVisibility(View.GONE);
+                            ((TextView) itemView.findViewById(R.id.pending_text)).setText("");
+                            ((TextView) itemView.findViewById(R.id.studentname_text)).setText("No student");
+                            ((TextView) itemView.findViewById(R.id.education_text)).setText("No student");
                         }
                     });
                 }

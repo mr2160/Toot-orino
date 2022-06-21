@@ -65,13 +65,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /*Timeslot t1 = new Timeslot("f4Y9rMCb3bzv6WDI7uxl", //F1XHkhK8H7qykgdPCm5y
-                                "",
-                                new Subject("Geografija", 9),
+                                "F1XHkhK8H7qykgdPCm5y",
+                                new Subject("Ples", 7),
                                 "",
                                 "",
                                 new Date(java.sql.Timestamp.valueOf("2022-06-25 10:20:00.0").getTime()),
                                 new Date(java.sql.Timestamp.valueOf("2022-06-25 12:20:00.0").getTime()),
-                                "Žilberterjeva 5",
+                                "Monke 60",
                         false);
 
         dba.addTimeslot(t1);*/
