@@ -8,13 +8,14 @@
     tools:context=".Student.MainActivityStudent">
 
     <RelativeLayout
+        android:id="@+id/toolbar_student"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="10dp"
         android:weightSum="2"
-        android:id="@+id/toolbar_student"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp">
+        tools:layout_editor_absoluteX="71dp">
 
         <TextView
             android:id="@+id/search_tag_student"
@@ -46,6 +47,7 @@
             android:src="@mipmap/settings_icon_round" />
 
     </RelativeLayout>
+
     <SearchView
         android:id="@+id/search_bar_student"
         android:layout_width="match_parent"

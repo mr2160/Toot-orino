@@ -63,13 +63,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.w(null, "Failed to get currentUser");
             }
         });
-        /*Timeslot t1 = new Timeslot("F1XHkhK8H7qykgdPCm5y",
+
+        /*Timeslot t1 = new Timeslot("F1XHkhK8H7qykgdPCm5y", //F1XHkhK8H7qykgdPCm5y
                                 "",
                                 new Subject("Math", 10),
                                 "",
                                 "",
-                                new Date(java.sql.Timestamp.valueOf("2022-06-27 10:00:00.0").getTime()),
-                                new Date(java.sql.Timestamp.valueOf("2022-06-27 12:00:00.0").getTime()),
+                                new Date(java.sql.Timestamp.valueOf("2022-06-24 10:00:00.0").getTime()),
+                                new Date(java.sql.Timestamp.valueOf("2022-06-24 12:00:00.0").getTime()),
                                 "zoom",
                         false);
 

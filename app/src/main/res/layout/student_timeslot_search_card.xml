@@ -42,70 +42,114 @@
         android:padding="5dp"
         />
     <TextView
-        android:id="@+id/date_text"
+        android:id="@+id/location_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:text="28.8"
-        android:layout_toStartOf="@id/timeslot_time_text"
         android:padding="5dp"
+        android:text="Naslov ulice"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/hourly_rate"
         />
     <TextView
         android:id="@+id/timeslot_time_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="9:00"
-        android:textAlignment="center"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:layout_alignParentEnd="true"
         android:padding="5dp"
-        />
+        android:text="9:00"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
 
     <RelativeLayout
         android:id="@+id/details_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_below="@id/tutorname_text"
-        android:visibility="gone"
-        >
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
         <View
             android:id="@+id/seperator_bar"
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="20dp"
             android:layout_height="2dp"
-            android:layout_marginTop="5dp"
             android:layout_alignParentTop="true"
-            android:background="@android:color/darker_gray"
-            />
-        <TextView
-            android:id="@+id/location_text"
-            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:background="@android:color/darker_gray" />
+
+        <RelativeLayout
+            android:id="@+id/tutor_info_body"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Naslov ulice"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
             android:layout_below="@id/seperator_bar"
-            />
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/star_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="40dp"
+                android:src="@drawable/star_icon" />
+
+            <RelativeLayout
+                android:id="@+id/rating_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/star_icon">
+
+                <TextView
+                    android:id="@+id/rating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="18dp"
+                    android:alpha="0.9"
+                    android:paddingRight="2dp"
+                    android:text="Rating:"
+                    android:textColor="@color/yellow"
+                    android:textSize="17.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/rating_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/rating_text"
+                    android:alpha="0.9"
+                    android:text="8.0"
+                    android:textColor="@color/yellow"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/details_text"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/rating_info"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
         <Button
             android:id="@+id/request_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/request_timeslot"
-            android:backgroundTint="@color/tutor_main_blue"
-            android:textAllCaps="false"
-            android:textSize="18sp"
+            android:layout_below="@id/tutor_info_body"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/location_text"
-            />
+            android:backgroundTint="@color/tutor_main_blue"
+            android:text="@string/request_timeslot"
+            android:textAllCaps="false"
+            android:textSize="18sp" />
     </RelativeLayout>
 
 

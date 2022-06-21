@@ -139,6 +139,7 @@ public class MainActivityStudent extends AppCompatActivity{
                     if(TSdate.compareTo(date)==0){
                         filteredTimeslots.add(timeslots.get(i));
                     }
+                    Log.w(null, "timeslots size:" + String.valueOf(timeslots.size()));
                 }
                 setAdapter(filteredTimeslots, timeslotIDs);
             }
