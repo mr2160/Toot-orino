@@ -125,16 +125,17 @@ public class MainActivityStudent extends AppCompatActivity{
         };
     }
 
+
     public void loadTimeslots(String date){
         this.dba.getTBR(User.getCurrentUserID(), new OnTimeslotsFilledListener() {
             @Override
             public void onTimeslotsFilled(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs) {
                 DateFormat format = new SimpleDateFormat("dd");
-                for(Timeslot timeslot: timeslots){
+                for(int i = 0; i < timeslots.size(); i++){
 
-                    String TSdate = format.format(timeslot.getStartDate().getTime());
+                    String TSdate = format.format(timeslots.get(i).getStartDate().getTime());
                     if(TSdate.compareTo(date)!=0){
-                        timeslots.remove(timeslot);
+                        timeslots.remove(i);
                     }
                 }
                 setAdapter(timeslots, timeslotIDs);
