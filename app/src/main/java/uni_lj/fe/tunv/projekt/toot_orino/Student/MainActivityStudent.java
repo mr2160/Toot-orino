@@ -131,14 +131,16 @@ public class MainActivityStudent extends AppCompatActivity{
             @Override
             public void onTimeslotsFilled(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs) {
                 DateFormat format = new SimpleDateFormat("dd");
+                ArrayList<Timeslot> filteredTimeslots = new ArrayList<Timeslot>();
                 for(int i = 0; i < timeslots.size(); i++){
 
                     String TSdate = format.format(timeslots.get(i).getStartDate().getTime());
-                    if(TSdate.compareTo(date)!=0){
-                        timeslots.remove(i);
+                    Log.i(null, date+TSdate);
+                    if(TSdate.compareTo(date)==0){
+                        filteredTimeslots.add(timeslots.get(i));
                     }
                 }
-                setAdapter(timeslots, timeslotIDs);
+                setAdapter(filteredTimeslots, timeslotIDs);
             }
 
             @Override
