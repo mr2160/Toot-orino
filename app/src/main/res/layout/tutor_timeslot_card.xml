@@ -67,29 +67,70 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/studentname_text"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
+
         <View
             android:id="@+id/seperator_bar"
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="20dp"
             android:layout_height="2dp"
-            android:layout_marginTop="5dp"
             android:layout_alignParentTop="true"
-            android:background="@android:color/darker_gray"
-            />
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/location_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seperator_bar"
+            android:layout_marginStart="20dp"
+            android:padding="5dp"
+            android:text="Location:"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/location_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/seperator_bar"
+            android:layout_toEndOf="@id/location_tag"
+            android:padding="5dp"
             android:text="Naslov ulice"
             android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/education_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location_tag"
+            android:layout_marginStart="20dp"
+            android:padding="5dp"
+            android:text="Education level:"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:padding="5dp"
-            android:layout_below="@id/seperator_bar"
+
             />
+
+        <TextView
+            android:id="@+id/education_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location_text"
+            android:layout_toEndOf="@id/education_tag"
+            android:padding="5dp"
+            android:text="Stopnja izobrazbe"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <Button

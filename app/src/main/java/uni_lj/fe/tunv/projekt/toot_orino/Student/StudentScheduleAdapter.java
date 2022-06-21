@@ -1,5 +1,6 @@
 package uni_lj.fe.tunv.projekt.toot_orino.Student;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 
 import uni_lj.fe.tunv.projekt.toot_orino.DBAccess;
 import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.User;
+import uni_lj.fe.tunv.projekt.toot_orino.OnUserFilledListener;
 import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentScheduleAdapter.ViewHolder> {
@@ -39,14 +42,35 @@ public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentSchedule
 
     @Override
     public void onBindViewHolder(@NonNull StudentScheduleAdapter.ViewHolder holder, int position) {
+        fillUserInfo(timeslots.get(position).getTutorID(), holder.nameView);
         holder.subjectView.setText(timeslots.get(position).getSubject().getName());
         holder.locationView.setText(timeslots.get(position).getLocation());
         holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
-        holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + timeslots.get(position).getStartDate().getMinutes());
-        holder.nameView.setText(timeslots.get(position).getStudentID());
+        String minutes = String.valueOf(timeslots.get(position).getStartDate().getMinutes());
+        if(minutes.length()<2){
+            minutes = "0" + minutes;
+        }
+        holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + minutes);
         holder.hourlyrateView.setText(new StringBuilder().append("$").append(timeslots.get(position).getSubject().getHourlyRate()).append("/h"));
         holder.timeslotID = timeslotIDs.get(position);
     }
+
+    private void fillUserInfo(String id, TextView nameView) {
+        DBAccess dba = new DBAccess();
+        dba.getUserFromId(id, new OnUserFilledListener() {
+            @Override
+            public void onUserFilled(User user) {
+                if(user != null){
+                    nameView.setText(user.getName());
+                }
+            }
+            @Override
+            public void onError(Exception taskException) {
+                Log.w(null, "Failed to get user");
+            }
+        });
+    }
+
     @Override
     public int getItemCount() {
         return timeslots.size();
@@ -73,7 +97,7 @@ public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentSchedule
             this.nameView = (TextView) itemView.findViewById(R.id.tutorname_text); //TODO: Get actual name from ID
             this.hourlyrateView = (TextView) itemView.findViewById(R.id.hourly_rate);
             itemView.setOnClickListener(this);
-            itemView.findViewById(R.id.cancel_timeslot).setOnClickListener(new View.OnClickListener() {
+            /*itemView.findViewById(R.id.cancel_timeslot).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     DBAccess dba = new DBAccess();
@@ -84,7 +108,7 @@ public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentSchedule
                         }
                     });
                 }
-            });
+            });*/
         }
 
         @Override

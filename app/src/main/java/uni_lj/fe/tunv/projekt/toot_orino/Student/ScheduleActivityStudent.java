@@ -83,13 +83,13 @@ public class ScheduleActivityStudent extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 View details = view.findViewById(R.id.details);
-                Button cancelBtn = view.findViewById(R.id.cancel_timeslot);
+                //Button cancelBtn = view.findViewById(R.id.cancel_timeslot);
                 if(details.getVisibility() == View.GONE) {
                     details.setVisibility(View.VISIBLE);
-                    cancelBtn.setVisibility(View.VISIBLE);
+                    //cancelBtn.setVisibility(View.VISIBLE);
                 }else{
                     details.setVisibility(View.GONE);
-                    cancelBtn.setVisibility(View.GONE);
+                    //cancelBtn.setVisibility(View.GONE);
                 }
             }
         };

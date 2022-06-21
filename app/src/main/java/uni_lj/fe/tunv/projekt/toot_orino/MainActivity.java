@@ -65,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /*Timeslot t1 = new Timeslot("F1XHkhK8H7qykgdPCm5y", //F1XHkhK8H7qykgdPCm5y
+                                "f4Y9rMCb3bzv6WDI7uxl",
+                                new Subject("Biology", 11),
                                 "",
-                                new Subject("Math", 10),
                                 "",
-                                "",
-                                new Date(java.sql.Timestamp.valueOf("2022-06-24 10:00:00.0").getTime()),
-                                new Date(java.sql.Timestamp.valueOf("2022-06-24 12:00:00.0").getTime()),
+                                new Date(java.sql.Timestamp.valueOf("2022-06-24 10:20:00.0").getTime()),
+                                new Date(java.sql.Timestamp.valueOf("2022-06-24 12:20:00.0").getTime()),
                                 "zoom",
-                        false);
+                        true);
 
         dba.addTimeslot(t1);*/
     }

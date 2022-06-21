@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import uni_lj.fe.tunv.projekt.toot_orino.DBAccess;
@@ -45,7 +47,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        fillUsername(timeslots.get(position).getStudentID(), holder.nameView);
+        fillUserInfo(timeslots.get(position).getStudentID(), holder.nameView, holder.educationView);
         holder.nameView.setText("Name unavailable");
         holder.subjectView.setText(timeslots.get(position).getSubject().getName());
         holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
@@ -53,13 +55,15 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
         holder.timeslotID = timeslotIDs.get(position);
     }
 
-    private void fillUsername(String id, TextView nameView) {
+
+    private void fillUserInfo(String id, TextView nameView, TextView educationView) {
         DBAccess dba = new DBAccess();
         dba.getUserFromId(id, new OnUserFilledListener() {
             @Override
             public void onUserFilled(User user) {
                 if(user != null){
                     nameView.setText(user.getName());
+                    educationView.setText(user.getCurrentEducation());
                 }
             }
             @Override
@@ -79,8 +83,9 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
         public TextView subjectView;
         public TextView dateView;
         public TextView timestampView;
-        public TextView locationView;
         public String timeslotID;
+        public TextView locationView;
+        public TextView educationView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -89,6 +94,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
             this.dateView = (TextView) itemView.findViewById(R.id.date_text);
             this.timestampView = (TextView) itemView.findViewById(R.id.timeslot_time_text);
             this.locationView = (TextView) itemView.findViewById(R.id.location_text);
+            this.educationView = (TextView) itemView.findViewById(R.id.education_text);
             itemView.setOnClickListener(this);
             itemView.findViewById(R.id.confirm_button).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -117,6 +123,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
                 }
             });
         }
+
 
         @Override
         public void onClick(View view) {
