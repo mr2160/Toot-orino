@@ -8,18 +8,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import java.util.ArrayList;
 
+import uni_lj.fe.tunv.projekt.toot_orino.DBAccess;
 import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
 import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentScheduleAdapter.ViewHolder> {
     private ArrayList<Timeslot> timeslots;
+    private ArrayList<String> timeslotIDs;
     private static StudentScheduleAdapter.RecyclerClickListener listener;
 
-    public StudentScheduleAdapter(ArrayList<Timeslot> timeslots, StudentScheduleAdapter.RecyclerClickListener listener){
+    public StudentScheduleAdapter(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs, StudentScheduleAdapter.RecyclerClickListener listener){
         this.timeslots = timeslots;
         this.listener = listener;
+        this.timeslotIDs = timeslotIDs;
     }
 
 
@@ -40,7 +45,7 @@ public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentSchedule
         holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + timeslots.get(position).getStartDate().getMinutes());
         holder.nameView.setText(timeslots.get(position).getStudentID());
         holder.hourlyrateView.setText(new StringBuilder().append("$").append(timeslots.get(position).getSubject().getHourlyRate()).append("/h"));
-
+        holder.timeslotID = timeslotIDs.get(position);
     }
     @Override
     public int getItemCount() {
@@ -56,6 +61,8 @@ public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentSchedule
         public TextView nameView;
         public TextView hourlyrateView;
 
+        public String timeslotID;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -69,7 +76,13 @@ public class StudentScheduleAdapter extends RecyclerView.Adapter<StudentSchedule
             itemView.findViewById(R.id.cancel_timeslot).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    locationView.setVisibility(View.GONE); //TODO: Code for canceling timeslot
+                    DBAccess dba = new DBAccess();
+                    dba.studentCancelTimeslot(timeslotID).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            itemView.setVisibility(View.GONE);
+                        }
+                    });
                 }
             });
         }

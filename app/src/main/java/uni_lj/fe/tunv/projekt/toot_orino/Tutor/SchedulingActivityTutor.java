@@ -74,8 +74,6 @@ public class SchedulingActivityTutor extends AppCompatActivity {
             int minutesS = ((!minutesStart.getText().toString().isEmpty())) ? Integer.parseInt(minutesStart.getText().toString()) : -1;
             doit = minutesS<0 ? false : true;
 
-            EditText detailText = (EditText) findViewById(R.id.details_input);
-            String details = detailText.getText().toString();
 
             currentDate.setHours(hourS);
             currentDate.setMinutes(minutesS);
@@ -87,7 +85,7 @@ public class SchedulingActivityTutor extends AppCompatActivity {
             Timeslot newTimeslot = new Timeslot(User.currentUserID,
                     "",
                     new Subject(subject, hourlyRate),
-                    details,
+                    "",
                     "",
                     startDate,
                     endDate,

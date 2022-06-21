@@ -54,12 +54,13 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
     }
 
     private void fillUsername(String id, TextView nameView) {
-
         DBAccess dba = new DBAccess();
         dba.getUserFromId(id, new OnUserFilledListener() {
             @Override
             public void onUserFilled(User user) {
-                nameView.setText(user.getName());
+                if(user != null){
+                    nameView.setText(user.getName());
+                }
             }
             @Override
             public void onError(Exception taskException) {

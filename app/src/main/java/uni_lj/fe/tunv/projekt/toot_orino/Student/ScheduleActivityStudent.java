@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
+import uni_lj.fe.tunv.projekt.toot_orino.DBAccess;
+import uni_lj.fe.tunv.projekt.toot_orino.OnTimeslotsFilledListener;
 import uni_lj.fe.tunv.projekt.toot_orino.Tutor.MainActivityTutor;
 import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
 import uni_lj.fe.tunv.projekt.toot_orino.Objects.User;
@@ -25,7 +28,7 @@ import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class ScheduleActivityStudent extends AppCompatActivity {
     private StudentScheduleAdapter.RecyclerClickListener listener;
-
+    private DBAccess dba;
     float x1, x2, y1, y2;
 
     @Override
@@ -43,7 +46,8 @@ public class ScheduleActivityStudent extends AppCompatActivity {
             startActivity(new Intent(ScheduleActivityStudent.this, MainActivityStudent.class));
         });
 
-
+        this.dba = new DBAccess();
+        loadTimeslots();
     }
 
     public boolean onTouchEvent(MotionEvent touchevent){
@@ -63,12 +67,12 @@ public class ScheduleActivityStudent extends AppCompatActivity {
         return false;
     }
 
-    private void setAdapter(ArrayList<Timeslot> timeslots) {
+    private void setAdapter(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs) {
         setOnClickListener();
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.schedule_student_recycle_view);
-        StudentScheduleAdapter STadapter = new StudentScheduleAdapter(timeslots, listener);
+        StudentScheduleAdapter STadapter = new StudentScheduleAdapter(timeslots, timeslotIDs, listener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(STadapter);
@@ -90,5 +94,21 @@ public class ScheduleActivityStudent extends AppCompatActivity {
             }
         };
     }
+
+    private void loadTimeslots(){
+        this.dba.getConfirmedStudentTimeslots(User.getCurrentUserID(), new OnTimeslotsFilledListener() {
+            @Override
+            public void onTimeslotsFilled(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs) {
+                setAdapter(timeslots, timeslotIDs);
+            }
+
+            @Override
+            public void onError(Exception taskException) {
+                Log.w(null, "Failed to load student timeslots");
+            }
+        });
+    }
+
+
 
 }

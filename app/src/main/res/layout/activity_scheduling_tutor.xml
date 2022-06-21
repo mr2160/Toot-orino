@@ -45,11 +45,37 @@
             android:src="@mipmap/settings_icon_round" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/newTS_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_student"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/newTS_tag"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:paddingRight="15dp"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/newTS_bar"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_student"
+        app:layout_constraintTop_toBottomOf="@id/newTS_bar"
         android:id="@+id/info_body">
 
         <RelativeLayout
@@ -94,16 +120,15 @@
 
         <Button
             android:id="@+id/date_pick_btn"
+            style="?android:spinnerStyle"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/date_picker_scheduling"
-            android:textColor="@color/black"
-            android:textSize="30dp"
-            style="?android:spinnerStyle"
             android:layout_centerInParent="true"
-            android:onClick="openDatePicker"
             android:gravity="center"
-            />
+            android:onClick="openDatePicker"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
 
         <RelativeLayout
@@ -152,15 +177,6 @@
                 />
         </RelativeLayout>
 
-        <EditText
-            android:id="@+id/details_input"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_below="@id/second_input_line"
-            android:layout_marginHorizontal="30dp"
-            android:gravity="start"
-            android:hint="@string/details"
-            android:textSize="25dp" />
     </RelativeLayout>
 
     <Button

@@ -1,5 +1,7 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -135,6 +137,27 @@ public class DBAccess {
                 });
     }
 
+    public void getConfirmedStudentTimeslots(String userId, OnTimeslotsFilledListener listener){
+        ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
+        ArrayList<String> timeslotIDs = new ArrayList<String>();
+        this.db.collection("Timeslots").whereEqualTo("studentID", userId)
+                .whereEqualTo("confirmed", true)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Timeslot t = document.toObject(Timeslot.class);
+                                timeslots.add(t);
+                                timeslotIDs.add(document.getId());
+                            }
+                            listener.onTimeslotsFilled(timeslots, timeslotIDs);
+                        }
+                    }
+                });
+    }
+
     public void getUserFromId(String userId, OnUserFilledListener listener) {
         this.db.collection("Users")
                 .document(userId)
@@ -161,6 +184,11 @@ public class DBAccess {
     public Task<Void> rejectTimeslot(String timeslotID){
         return this.db.collection("Timeslots").document(timeslotID)
                 .update("studentID", "");
+    }
+
+    public Task<Void> studentCancelTimeslot(String timeslotID){
+        return this.db.collection("Timeslots").document(timeslotID)
+                .update("studentID", "", "confirmed", false);
     }
 }
 
