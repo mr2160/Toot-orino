@@ -63,18 +63,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.w(null, "Failed to get currentUser");
             }
         });
-
-        /*Timeslot t1 = new Timeslot("f4Y9rMCb3bzv6WDI7uxl", //F1XHkhK8H7qykgdPCm5y
-                                "F1XHkhK8H7qykgdPCm5y",
-                                new Subject("Ples", 7),
-                                "",
-                                "",
-                                new Date(java.sql.Timestamp.valueOf("2022-06-25 10:20:00.0").getTime()),
-                                new Date(java.sql.Timestamp.valueOf("2022-06-25 12:20:00.0").getTime()),
-                                "Monke 60",
-                        false);
-
-        dba.addTimeslot(t1);*/
     }
 
 }

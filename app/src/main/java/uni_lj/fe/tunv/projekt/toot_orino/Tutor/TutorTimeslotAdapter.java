@@ -49,7 +49,10 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
 
         if(!timeslots.get(position).getStudentID().isEmpty()){
             fillUserInfo(timeslots.get(position).getStudentID(), holder.nameView, holder.educationView);
+        }else{
+            holder.itemView.setBackgroundResource(R.drawable.rounded_border_gray);
         }
+
         holder.nameView.setText("No student");
         holder.educationView.setText("No student");
         holder.subjectView.setText(timeslots.get(position).getSubject().getName());
