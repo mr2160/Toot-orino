@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import java.util.ArrayList;
 
 import uni_lj.fe.tunv.projekt.toot_orino.DBAccess;
@@ -19,12 +21,14 @@ import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdapter.ViewHolder> {
     private ArrayList<Timeslot> timeslots;
+    private ArrayList<String> timeslotIDs;
     private static RecyclerClickListener listener;
     private DBAccess dba;
 
-    public TutorTimeslotAdapter(ArrayList<Timeslot> timeslots, RecyclerClickListener listener){
+    public TutorTimeslotAdapter(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs, RecyclerClickListener listener){
         this.timeslots = timeslots;
         this.listener = listener;
+        this.timeslotIDs = timeslotIDs;
         this.dba = new DBAccess();
     }
 
@@ -46,7 +50,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
         holder.subjectView.setText(timeslots.get(position).getSubject().getName());
         holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
         holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + timeslots.get(position).getStartDate().getMinutes());
-
+        holder.timeslotID = timeslotIDs.get(position);
     }
 
     private String getUsername(String id) {
@@ -76,7 +80,7 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
         public TextView dateView;
         public TextView timestampView;
         public TextView locationView;
-
+        public String timeslotID;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -89,25 +93,29 @@ public class TutorTimeslotAdapter extends RecyclerView.Adapter<TutorTimeslotAdap
             itemView.findViewById(R.id.confirm_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    locationView.setVisibility(View.GONE); //TODO: Code for confirming request
-                    ConfirmRequest();
+                     //Code for confirming request
+                    DBAccess dba = new DBAccess();
+                    dba.confirmTimeslot(timeslotID).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            itemView.setVisibility(View.GONE);
+                        }
+                    });
                 }
             });
             itemView.findViewById(R.id.reject_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    locationView.setVisibility(View.GONE); //TODO: Code for rejecting request
-                    RejectRequest();
+                    //Code for rejecting request
+                    DBAccess dba = new DBAccess();
+                    dba.rejectTimeslot(timeslotID).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            itemView.setVisibility(View.GONE);
+                        }
+                    });
                 }
             });
-        }
-
-        public void ConfirmRequest(){
-
-        }
-
-        public  void RejectRequest(){
-
         }
 
         @Override

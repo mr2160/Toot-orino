@@ -75,11 +75,11 @@ public class MainActivityTutor extends AppCompatActivity{
         return false;
     }
 
-    private void setAdapter(ArrayList<Timeslot> timeslots) {
+    private void setAdapter(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs) {
         setOnClickListener();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.timeslots_tutor_recycle_view);
-        TutorTimeslotAdapter TTadapter = new TutorTimeslotAdapter(timeslots, listener);
+        TutorTimeslotAdapter TTadapter = new TutorTimeslotAdapter(timeslots, timeslotIDs, listener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(TTadapter);
@@ -109,7 +109,7 @@ public class MainActivityTutor extends AppCompatActivity{
         this.dba.getTBC(User.getCurrentUserID(), new OnTimeslotsFilledListener() {
             @Override
             public void onTimeslotsFilled(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs) {
-                setAdapter(timeslots);
+                setAdapter(timeslots, timeslotIDs);
             }
 
             @Override

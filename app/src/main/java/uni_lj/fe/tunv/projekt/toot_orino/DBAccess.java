@@ -152,5 +152,15 @@ public class DBAccess {
         return this.db.collection("Timeslots").document(timeslotID)
                 .update("studentID", studentID);
     }
+
+    public Task<Void> confirmTimeslot(String timeslotID){
+        return this.db.collection("Timeslots").document(timeslotID)
+                .update("confirmed", true);
+    }
+
+    public Task<Void> rejectTimeslot(String timeslotID){
+        return this.db.collection("Timeslots").document(timeslotID)
+                .update("studentID", "");
+    }
 }
 
