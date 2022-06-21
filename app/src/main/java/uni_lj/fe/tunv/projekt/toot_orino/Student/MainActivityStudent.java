@@ -18,7 +18,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
@@ -40,10 +43,11 @@ public class MainActivityStudent extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_student);
 
-        String[] dates = {"29", "1", "2", "3", "4", "5", "6"};
+        String[] dates = getDates();
         String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.calendar_recycle_view);
-        CalendarAdapter adapter = new CalendarAdapter(dates, days);
+        CalendarAdapter adapter = new CalendarAdapter(dates, days, getCurrentDate());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapter);
@@ -62,6 +66,28 @@ public class MainActivityStudent extends AppCompatActivity{
         });
 
 
+    }
+
+    public String[] getDates(){
+        DateFormat format = new SimpleDateFormat("dd");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+        String[] dates = new String[7];
+        for (int i = 0; i < 7; i++)
+        {
+            dates[i] = format.format(calendar.getTime());
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        return dates;
+    }
+
+    public String getCurrentDate(){
+        DateFormat format = new SimpleDateFormat("dd");
+        Calendar calendar = Calendar.getInstance();
+        return format.format(calendar.getTime());
     }
 
     public boolean onTouchEvent(MotionEvent touchevent){
