@@ -3,25 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/drawable-anydpi/ic_switch.xml" value="0.17" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/drawable/rounded_border.xml" value="0.222" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/drawable/rounded_border_student.xml" value="0.2735" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/activity_calendar_card.xml" value="0.25" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/activity_login.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/activity_main_student.xml" value="0.33" />
+        <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/activity_main_student.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/activity_main_tutor.xml" value="0.33" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/activity_schedule_student.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/activity_scheduling_tutor.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/activity_search_student.xml" value="0.26927083333333335" />
-        <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/recycler_cards.xml" value="0.2828125" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/student_schedule_card.xml" value="0.28177083333333336" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/student_timeslot_search_card.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/layout/tutor_timeslot_card.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/Nejc/Desktop/Toot-orino/app/src/main/res/mipmap-anydpi-v26/arrow_icon.xml" value="0.17" />
         <entry key="..\:/Users/rodem/AndroidStudioProjects/Tootorino/app/src/main/res/drawable/searchbar_border.xml" value="0.332" />
         <entry key="..\:/Users/rodem/AndroidStudioProjects/Tootorino/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/rodem/AndroidStudioProjects/Tootorino/app/src/main/res/layout/activity_main_student.xml" value="0.25" />
+        <entry key="..\:/Users/rodem/AndroidStudioProjects/Tootorino/app/src/main/res/layout/student_schedule_card.xml" value="0.15081405312767782" />
+        <entry key="..\:/Users/rodem/AndroidStudioProjects/Tootorino/app/src/main/res/layout/student_timeslot_search_card.xml" value="0.15081405312767782" />
       </map>
     </option>
   </component>

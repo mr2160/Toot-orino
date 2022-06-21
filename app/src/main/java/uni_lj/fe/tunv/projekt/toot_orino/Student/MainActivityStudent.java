@@ -81,11 +81,11 @@ public class MainActivityStudent extends AppCompatActivity{
         return false;
     }
 
-    private void setAdapter(ArrayList<Timeslot> timeslots) {
+    private void setAdapter(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs) {
         setOnClickListener();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.timeslots_student_recycle_view);
-        StudentSearchAdapter STadapter = new StudentSearchAdapter(timeslots, listener);
+        StudentSearchAdapter STadapter = new StudentSearchAdapter(timeslots, timeslotIDs, listener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(STadapter);
@@ -108,8 +108,8 @@ public class MainActivityStudent extends AppCompatActivity{
     private void loadTimeslots(){
         this.dba.getTBR(User.getCurrentUserID(), new OnTimeslotsFilledListener() {
             @Override
-            public void onTimeslotsFilled(ArrayList<Timeslot> timeslots) {
-                setAdapter(timeslots);
+            public void onTimeslotsFilled(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs) {
+                setAdapter(timeslots, timeslotIDs);
             }
 
             @Override

@@ -108,7 +108,7 @@ public class MainActivityTutor extends AppCompatActivity{
     private void loadTimeslots(){
         this.dba.getTBC(User.getCurrentUserID(), new OnTimeslotsFilledListener() {
             @Override
-            public void onTimeslotsFilled(ArrayList<Timeslot> timeslots) {
+            public void onTimeslotsFilled(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs) {
                 setAdapter(timeslots);
             }
 

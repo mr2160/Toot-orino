@@ -1,7 +1,5 @@
 package uni_lj.fe.tunv.projekt.toot_orino;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -51,6 +49,7 @@ public class DBAccess {
 
     public ArrayList<Timeslot> getTutorTimeslotsFromUser(String userId, OnTimeslotsFilledListener listener){
         ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
+        ArrayList<String> timeslotIDs = new ArrayList<String>();
         this.db.collection("Timeslots").whereEqualTo("tutorID", userId).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -59,8 +58,9 @@ public class DBAccess {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Timeslot t = document.toObject(Timeslot.class);
                                 timeslots.add(t);
+                                timeslotIDs.add(document.getId());
                             }
-                            listener.onTimeslotsFilled(timeslots);
+                            listener.onTimeslotsFilled(timeslots, timeslotIDs);
                         }
                     }
                 });
@@ -70,6 +70,7 @@ public class DBAccess {
 
     public void getStudentTimeslotsFromUser(String userId, OnTimeslotsFilledListener listener){
         ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
+        ArrayList<String> timeslotIDs = new ArrayList<String>();
         this.db.collection("Timeslots").whereEqualTo("studentID", userId).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -78,16 +79,20 @@ public class DBAccess {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Timeslot t = document.toObject(Timeslot.class);
                                 timeslots.add(t);
+                                timeslotIDs.add(document.getId());
                             }
-                            listener.onTimeslotsFilled(timeslots);
+                            listener.onTimeslotsFilled(timeslots, timeslotIDs);
                         }
                     }
                 });
     }
 
+
+
     //Get Timeslots to be confirmed
     public void getTBC(String userId, OnTimeslotsFilledListener listener){
         ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
+        ArrayList<String> timeslotIDs = new ArrayList<String>();
         this.db.collection("Timeslots").whereEqualTo("tutorID", userId)
                 .whereEqualTo("confirmed", false)
                 .whereNotEqualTo("studentID", "")
@@ -99,8 +104,9 @@ public class DBAccess {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Timeslot t = document.toObject(Timeslot.class);
                                 timeslots.add(t);
+                                timeslotIDs.add(document.getId());
                             }
-                            listener.onTimeslotsFilled(timeslots);
+                            listener.onTimeslotsFilled(timeslots, timeslotIDs);
                         }
                     }
                 });
@@ -109,6 +115,7 @@ public class DBAccess {
     //Get Timeslots to be requested
     public void getTBR(String userId, OnTimeslotsFilledListener listener){
         ArrayList<Timeslot> timeslots = new ArrayList<Timeslot>();
+        ArrayList<String> timeslotIDs = new ArrayList<String>();
         this.db.collection("Timeslots")
                 .whereEqualTo("studentID", "")
                 .whereNotEqualTo("tutorID", userId)
@@ -120,8 +127,9 @@ public class DBAccess {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Timeslot t = document.toObject(Timeslot.class);
                                 timeslots.add(t);
+                                timeslotIDs.add(document.getId());
                             }
-                            listener.onTimeslotsFilled(timeslots);
+                            listener.onTimeslotsFilled(timeslots, timeslotIDs);
                         }
                     }
                 });
@@ -138,6 +146,11 @@ public class DBAccess {
                         listener.onUserFilled(user);
                     }
                 });
+    }
+
+    public Task<Void> requestTimeslot(String timeslotID, String studentID, String details, String desiredGrade){
+        return this.db.collection("Timeslots").document(timeslotID)
+                .update("studentID", studentID);
     }
 }
 

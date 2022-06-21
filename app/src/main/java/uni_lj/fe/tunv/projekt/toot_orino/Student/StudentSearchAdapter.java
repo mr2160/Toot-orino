@@ -1,5 +1,6 @@
 package uni_lj.fe.tunv.projekt.toot_orino.Student;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,18 +9,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import java.util.ArrayList;
 
+import uni_lj.fe.tunv.projekt.toot_orino.DBAccess;
 import uni_lj.fe.tunv.projekt.toot_orino.Objects.Timeslot;
+import uni_lj.fe.tunv.projekt.toot_orino.Objects.User;
 import uni_lj.fe.tunv.projekt.toot_orino.R;
 
 public class StudentSearchAdapter extends RecyclerView.Adapter<StudentSearchAdapter.ViewHolder> {
     private ArrayList<Timeslot> timeslots;
     private static StudentSearchAdapter.RecyclerClickListener listener;
+    private ArrayList<String> timeslotIDs;
+    private DBAccess dba;
 
-    public StudentSearchAdapter(ArrayList<Timeslot> timeslots, StudentSearchAdapter.RecyclerClickListener listener){
+    public StudentSearchAdapter(ArrayList<Timeslot> timeslots, ArrayList<String> timeslotIDs, StudentSearchAdapter.RecyclerClickListener listener){
         this.timeslots = timeslots;
         this.listener = listener;
+        this.timeslotIDs = timeslotIDs;
     }
 
 
@@ -40,7 +48,7 @@ public class StudentSearchAdapter extends RecyclerView.Adapter<StudentSearchAdap
         holder.dateView.setText(new StringBuilder().append(timeslots.get(position).getStartDate().getDate()).append(".").append(timeslots.get(position).getStartDate().getMonth()).toString());
         holder.timestampView.setText(timeslots.get(position).getStartDate().getHours() + ":" + timeslots.get(position).getStartDate().getMinutes());
         holder.locationView.setText(timeslots.get(position).getLocation());
-
+        holder.timeslotID = timeslotIDs.get(position);
     }
     @Override
     public int getItemCount() {
@@ -54,7 +62,7 @@ public class StudentSearchAdapter extends RecyclerView.Adapter<StudentSearchAdap
         public TextView dateView;
         public TextView timestampView;
         public TextView locationView;
-
+        public String timeslotID;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -68,7 +76,14 @@ public class StudentSearchAdapter extends RecyclerView.Adapter<StudentSearchAdap
             itemView.findViewById(R.id.request_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    locationView.setVisibility(View.GONE); //TODO: Code for request to database
+
+                    DBAccess dba = new DBAccess();
+                    dba.requestTimeslot(timeslotID, User.currentUserID, "", "").addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            itemView.setVisibility(View.GONE);
+                        }
+                    });
                 }
             });
         }
